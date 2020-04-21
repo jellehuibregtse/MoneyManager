@@ -1,0 +1,29 @@
+@model IEnumerable<MoneyManager.Account>
+
+@{
+    ViewBag.Title = "Accounts Overview";
+}
+
+<h1>@ViewBag.Title</h1>
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Account Name</th>
+            <th>Balance</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        @foreach (var account in Model)
+        {
+            <tr>
+                <td>@account.Name</td>
+                <td>€ @account.Balance</td>
+            </tr>
+        }
+
+        </tbody>
+    </table>
+</div>
