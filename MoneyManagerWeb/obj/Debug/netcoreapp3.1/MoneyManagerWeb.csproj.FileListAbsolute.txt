@@ -38,3 +38,4 @@
 /Users/jellehuibregtse/Documents/Projects/Git Repositories/MoneyManager/MoneyManagerWeb/obj/Debug/netcoreapp3.1/Razor/Views/_ViewStart.cshtml.g.cs
 /Users/jellehuibregtse/Documents/Projects/Git Repositories/MoneyManager/MoneyManagerWeb/obj/Debug/netcoreapp3.1/Razor/Views/_ViewImports.cshtml.g.cs
 /Users/jellehuibregtse/Documents/Projects/Git Repositories/MoneyManager/MoneyManagerWeb/bin/Debug/netcoreapp3.1/libman.json
+/Users/jellehuibregtse/Documents/Projects/Git Repositories/MoneyManager/MoneyManagerWeb/obj/Debug/netcoreapp3.1/Razor/Views/Account/Create.cshtml.g.cs

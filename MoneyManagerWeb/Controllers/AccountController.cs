@@ -30,5 +30,10 @@ namespace MoneyManagerWeb.Controllers
             
             return View(accountDetailsViewModel);
         }
+
+        public ViewResult Create()
+        {
+            return View();
+        }
     }
 }

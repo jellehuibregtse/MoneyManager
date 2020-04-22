@@ -29,6 +29,7 @@
         <e p="libman.json" t="Include" />
         <e p="Models" t="Include">
           <e p="IAccountRepository.cs" t="Include" />
+          <e p="ITransactionRepository.cs" t="Include" />
           <e p="MockAccountRepository.cs" t="Include" />
         </e>
         <e p="MoneyManagerWeb.csproj" t="IncludeRecursive" />
@@ -36,6 +37,7 @@
           <e p="Debug" t="Include">
             <e p="netcoreapp3.1" t="Include">
               <e p="MoneyManagerWeb.AssemblyInfo.cs" t="Include" />
+              <e p="MoneyManagerWeb.RazorAssemblyInfo.cs" t="Include" />
             </e>
           </e>
         </e>
@@ -52,6 +54,7 @@
           <e p="_ViewStart.cshtml" t="Include" />
           <e p="Account" t="Include">
             <e p="_ViewStart.cshtml" t="Include" />
+            <e p="Create.cshtml" t="Include" />
             <e p="Details.cshtml" t="Include" />
             <e p="Index.cshtml" t="Include" />
           </e>
@@ -116,6 +119,7 @@
     </e>
     <e p="$USER_HOME$/Library/Caches/Rider2019.3/extResources" t="IncludeRecursive" />
     <e p="$USER_HOME$/Library/Caches/Rider2019.3/resharper-host/local/Transient/ReSharperHost/v193/SolutionCaches/_MoneyManager.-1225949845.00" t="ExcludeRecursive" />
+    <e p="$APPLICATION_CONFIG_DIR$/javascript/extLibs/http_stackpath.bootstrapcdn.com_bootstrap_4.3.1_css_bootstrap.css" t="IncludeRecursive" />
     <e p="$APPLICATION_CONFIG_DIR$/scratches" t="IncludeRecursive" />
   </component>
 </project>
