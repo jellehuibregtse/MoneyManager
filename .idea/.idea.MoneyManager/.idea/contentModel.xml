@@ -18,7 +18,7 @@
         <e p="User.cs" t="Include" />
       </e>
       <e p="MoneyManager.sln" t="IncludeFlat" />
-      <e p="MoneyManagerWeb" t="IncludeRecursive">
+      <e p="MoneyManager.Web" t="IncludeRecursive">
         <e p="appsettings.Development.json" t="Include" />
         <e p="appsettings.json" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
@@ -28,16 +28,19 @@
         </e>
         <e p="libman.json" t="Include" />
         <e p="Models" t="Include">
+          <e p="AppDbContext.cs" t="Include" />
           <e p="IAccountRepository.cs" t="Include" />
           <e p="ITransactionRepository.cs" t="Include" />
           <e p="MockAccountRepository.cs" t="Include" />
+          <e p="SQLAccountRepository.cs" t="Include" />
         </e>
-        <e p="MoneyManagerWeb.csproj" t="IncludeRecursive" />
+        <e p="MoneyManager.Web.csproj" t="IncludeRecursive" />
+        <e p="MvcMoneyManager.db" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp3.1" t="Include">
-              <e p="MoneyManagerWeb.AssemblyInfo.cs" t="Include" />
-              <e p="MoneyManagerWeb.RazorAssemblyInfo.cs" t="Include" />
+              <e p="MoneyManager.Web.AssemblyInfo.cs" t="Include" />
+              <e p="MoneyManager.Web.RazorAssemblyInfo.cs" t="Include" />
             </e>
           </e>
         </e>

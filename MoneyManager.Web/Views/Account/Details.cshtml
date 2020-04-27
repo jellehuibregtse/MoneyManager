@@ -1,0 +1,30 @@
+@model MoneyManager.Web.ViewModels.AccountDetailsViewModel
+
+@{
+    ViewBag.Title = @Model.PageTitle;
+}
+
+<h1>Transactions</h1>
+<div>
+    <ul class="nav nav-tabs mt-4">
+        <li class="nav-item">
+            <a class="nav-link active">
+                All Transactions
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link">
+                Test
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link">
+                Test2
+            </a>
+        </li>
+    </ul>
+</div>
+
+@section Scripts {
+    <script src="~/js/CustomScript.js"></script>
+}

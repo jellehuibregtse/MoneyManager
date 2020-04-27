@@ -1,27 +1,18 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace MoneyManager
 {
     public class Account
     {
-        public int AccountId { get; }
-        public string Name { get; }
-        public decimal Balance { get; }
+        public int AccountId { get; set; }
+        [Required(ErrorMessage = "Please enter a name for the account")]
+        public string Name { get; set; }
+        [DataType(DataType.Currency)]
+        [DisplayFormat(DataFormatString ="{0:C0}", ApplyFormatInEditMode = true)]
+        public decimal Balance { get; set; }
         
         private readonly List<Transaction> _transactions;
-
-        public Account(int accountId, string name, decimal balance)
-        {
-            AccountId = accountId;
-            Name = name;
-            Balance = balance;
-            _transactions = new List<Transaction>();
-        }
-
-        public void AddTransaction(decimal amount, Category category)
-        {
-            _transactions.Add(new Transaction(_transactions.Count + 1, amount, category));
-        }
     }
 }
