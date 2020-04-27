@@ -10,5 +10,10 @@ namespace MoneyManager.Web.Models
         }
 
         public DbSet<Account> Accounts { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Seed();
+        }
     }
 }

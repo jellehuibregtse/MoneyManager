@@ -7,10 +7,10 @@ namespace MoneyManager
     public class Account
     {
         public int AccountId { get; set; }
-        [Required(ErrorMessage = "Please enter a name for the account")]
+        [Required]
+        [MaxLength(50, ErrorMessage = "Name cannot exceed 50 characters")]
         public string Name { get; set; }
         [DataType(DataType.Currency)]
-        [DisplayFormat(DataFormatString ="{0:C0}", ApplyFormatInEditMode = true)]
         public decimal Balance { get; set; }
         
         private readonly List<Transaction> _transactions;

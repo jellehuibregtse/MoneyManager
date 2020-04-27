@@ -7,3 +7,15 @@
 /Users/jellehuibregtse/Documents/Projects/Git Repositories/MoneyManager/MoneyManager/obj/Debug/netcoreapp3.1/MoneyManager.AssemblyInfo.cs
 /Users/jellehuibregtse/Documents/Projects/Git Repositories/MoneyManager/MoneyManager/obj/Debug/netcoreapp3.1/MoneyManager.dll
 /Users/jellehuibregtse/Documents/Projects/Git Repositories/MoneyManager/MoneyManager/obj/Debug/netcoreapp3.1/MoneyManager.pdb
+C:\Users\Jelle\Documents\GitHub\MoneyManager\MoneyManager\bin\Debug\netcoreapp3.1\MoneyManager.deps.json
+C:\Users\Jelle\Documents\GitHub\MoneyManager\MoneyManager\bin\Debug\netcoreapp3.1\MoneyManager.dll
+C:\Users\Jelle\Documents\GitHub\MoneyManager\MoneyManager\bin\Debug\netcoreapp3.1\MoneyManager.pdb
+C:\Users\Jelle\Documents\GitHub\MoneyManager\MoneyManager\obj\Debug\netcoreapp3.1\MoneyManager.csprojAssemblyReference.cache
+C:\Users\Jelle\Documents\GitHub\MoneyManager\MoneyManager\obj\Debug\netcoreapp3.1\MoneyManager.AssemblyInfoInputs.cache
+C:\Users\Jelle\Documents\GitHub\MoneyManager\MoneyManager\obj\Debug\netcoreapp3.1\MoneyManager.AssemblyInfo.cs
+C:\Users\Jelle\Documents\GitHub\MoneyManager\MoneyManager\obj\Debug\netcoreapp3.1\MoneyManager.dll
+C:\Users\Jelle\Documents\GitHub\MoneyManager\MoneyManager\obj\Debug\netcoreapp3.1\MoneyManager.pdb
+C:\Users\Jelle\Documents\GitHub\MoneyManager\MoneyManager\bin\Debug\netcoreapp3.1\MoneyManager.runtimeconfig.json
+C:\Users\Jelle\Documents\GitHub\MoneyManager\MoneyManager\bin\Debug\netcoreapp3.1\MoneyManager.runtimeconfig.dev.json
+C:\Users\Jelle\Documents\GitHub\MoneyManager\MoneyManager\obj\Debug\netcoreapp3.1\MoneyManager.genruntimeconfig.cache
+C:\Users\Jelle\Documents\GitHub\MoneyManager\MoneyManager\obj\Debug\netcoreapp3.1\MoneyManager.csproj.CoreCompileInputs.cache

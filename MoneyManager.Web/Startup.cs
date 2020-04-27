@@ -26,8 +26,8 @@ namespace MoneyManager.Web
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<AppDbContext>(options => 
-                options.UseSqlite(_config.GetConnectionString("MoneyManagerContext")));
+            services.AddDbContextPool<AppDbContext>(options => 
+                options.UseSqlServer(_config.GetConnectionString("MoneyManagerDBConnection")));
             
             services.AddMvc(options => options.EnableEndpointRouting = false);
             services.AddScoped<IAccountRepository, SqlAccountRepository>();
