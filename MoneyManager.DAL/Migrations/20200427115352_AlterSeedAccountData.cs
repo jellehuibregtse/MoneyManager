@@ -1,15 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace MoneyManager.Web.Migrations
+namespace MoneyManager.DAL.Migrations
 {
-    public partial class SeedAccountTable : Migration
+    public partial class AlterSeedAccountData : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.InsertData(
                 table: "Accounts",
                 columns: new[] { "AccountId", "Balance", "Name" },
-                values: new object[] { 1, 100m, "Account 1" });
+                values: new object[] { 2, 200m, "Account 2" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -17,7 +17,7 @@ namespace MoneyManager.Web.Migrations
             migrationBuilder.DeleteData(
                 table: "Accounts",
                 keyColumn: "AccountId",
-                keyValue: 1);
+                keyValue: 2);
         }
     }
 }

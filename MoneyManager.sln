@@ -1,8 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyManager", "MoneyManager\MoneyManager.csproj", "{0AAF8133-3272-462D-96AF-0005A989C99A}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoneyManager", "MoneyManager\MoneyManager.csproj", "{0AAF8133-3272-462D-96AF-0005A989C99A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyManager.Web", "MoneyManager.Web\MoneyManager.Web.csproj", "{65A6F948-CC2F-4B53-9074-3CA6E4B7E6B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoneyManager.Web", "MoneyManager.Web\MoneyManager.Web.csproj", "{65A6F948-CC2F-4B53-9074-3CA6E4B7E6B2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoneyManager.DAL", "MoneyManager.DAL\MoneyManager.DAL.csproj", "{6E9E34D1-959D-4664-9D04-B8E5A2949EFA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +23,15 @@ Global
 		{65A6F948-CC2F-4B53-9074-3CA6E4B7E6B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65A6F948-CC2F-4B53-9074-3CA6E4B7E6B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65A6F948-CC2F-4B53-9074-3CA6E4B7E6B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E9E34D1-959D-4664-9D04-B8E5A2949EFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E9E34D1-959D-4664-9D04-B8E5A2949EFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E9E34D1-959D-4664-9D04-B8E5A2949EFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E9E34D1-959D-4664-9D04-B8E5A2949EFA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7BF5DEBB-345F-4688-B6CD-91459C56F8FF}
 	EndGlobalSection
 EndGlobal

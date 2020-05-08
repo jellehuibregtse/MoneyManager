@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace MoneyManager.Web.Models
+namespace MoneyManager.DAL
 {
     public class SqlAccountRepository : IAccountRepository
     {

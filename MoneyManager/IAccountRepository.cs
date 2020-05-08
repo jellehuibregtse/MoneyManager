@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using MoneyManager;
 
-namespace MoneyManager.Web.Models
+namespace MoneyManager
 {
     public interface IAccountRepository
     {
@@ -11,6 +11,5 @@ namespace MoneyManager.Web.Models
         Account Add(Account account);
         Account Update(Account updatedAccount);
         Account Delete(int accountId);
-
     }
 }

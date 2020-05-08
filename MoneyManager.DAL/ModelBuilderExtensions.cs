@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
-namespace MoneyManager.Web.Models
+namespace MoneyManager.DAL
 {
     public static class ModelBuilderExtensions
     {

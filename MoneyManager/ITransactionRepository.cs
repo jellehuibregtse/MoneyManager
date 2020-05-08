@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using MoneyManager;
 
-namespace MoneyManager.Web.Models
+namespace MoneyManager
 {
     public interface ITransactionRepository
     {

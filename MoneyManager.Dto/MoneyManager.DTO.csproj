@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MoneyManager.DAL\MoneyManager.DAL.csproj" />
+    <ProjectReference Include="..\MoneyManager\MoneyManager.csproj" />
+  </ItemGroup>
+
+</Project>

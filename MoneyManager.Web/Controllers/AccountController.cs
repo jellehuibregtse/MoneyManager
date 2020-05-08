@@ -1,6 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using MoneyManager;
-using MoneyManager.Web.Models;
 using MoneyManager.Web.ViewModels;
 
 namespace MoneyManager.Web.Controllers
@@ -23,7 +21,7 @@ namespace MoneyManager.Web.Controllers
 
         public ViewResult Details(int? id)
         {
-            var accountDetailsViewModel = new AccountDetailsViewModel()
+            var accountDetailsViewModel = new AccountDetailsDTO()
             {
                 Account = _accountRepository.GetAccount(id ?? 1),
                 PageTitle = "Account Details"

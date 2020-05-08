@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace MoneyManager.Web.Models
+namespace MoneyManager.DAL
 {
     public class AppDbContext : DbContext
     {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace MoneyManager.Web.Migrations
+namespace MoneyManager.DAL.Migrations
 {
     public partial class InitialMigration : Migration
     {
