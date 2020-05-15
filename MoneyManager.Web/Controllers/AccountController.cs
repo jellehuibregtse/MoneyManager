@@ -25,14 +25,19 @@ namespace MoneyManager.Web.Controllers
 
         public ViewResult Details(int? id)
         {
+            var account = _accountRepository.GetAccount(id.Value);
+
+            if (account == null)
+            {
+                Response.StatusCode = 404;
+                return View("AccountNotFound", id.Value);
+            }
+
             var accountDetailsViewModel = new AccountDetailsDto()
             {
-                Account = _accountRepository.GetAccount(id ?? 1),
+                Account = account,
                 PageTitle = "Account Details"
             };
-
-            if (accountDetailsViewModel.Account.Transactions == null)
-                accountDetailsViewModel.Account.Transactions = new List<Transaction>();
 
             return View(accountDetailsViewModel);
         }
@@ -69,10 +74,10 @@ namespace MoneyManager.Web.Controllers
                 Name = account.Name,
                 Balance = account.Balance
             };
-            
+
             return View(accountEditDto);
         }
-        
+
         [HttpPost]
         public IActionResult Edit(AccountEditDto model)
         {
@@ -81,7 +86,7 @@ namespace MoneyManager.Web.Controllers
             var account = _accountRepository.GetAccount(model.Id);
             account.Name = model.Name;
             account.Balance = model.Balance;
-            
+
             var newAccount = new Account
             {
                 Id = model.Id,

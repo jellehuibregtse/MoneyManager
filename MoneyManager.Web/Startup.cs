@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,6 +25,9 @@ namespace MoneyManager.Web
         {
             services.AddDbContextPool<AppDbContext>(options => 
                 options.UseSqlServer(_config.GetConnectionString("MoneyManagerDBConnection")));
+
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<AppDbContext>();
             
             services.AddMvc(options => options.EnableEndpointRouting = false);
             services.AddScoped<IAccountRepository, SqlAccountRepository>();
@@ -36,8 +40,14 @@ namespace MoneyManager.Web
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseExceptionHandler("/Error/");
+                app.UseStatusCodePagesWithRedirects("/Error/{0}");
+            }
 
             app.UseStaticFiles();
+            app.UseAuthentication();
             app.UseRouting();
             app.UseMvcWithDefaultRoute();
             //app.UseMvc(routes => { routes.MapRoute("default", "{controller=home}/{action=index}/{id?}"); });

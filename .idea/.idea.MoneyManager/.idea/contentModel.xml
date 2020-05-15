@@ -31,6 +31,8 @@
         <e p="Migrations" t="Include">
           <e p="20200515090608_InitialMigration.cs" t="Include" />
           <e p="20200515090608_InitialMigration.Designer.cs" t="Include" />
+          <e p="20200515122713_AddedIdentity.cs" t="Include" />
+          <e p="20200515122713_AddedIdentity.Designer.cs" t="Include" />
           <e p="AppDbContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="ModelBuilderExtensions.cs" t="Include" />
@@ -51,7 +53,9 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="Controllers" t="Include">
           <e p="AccountController.cs" t="Include" />
+          <e p="ErrorController.cs" t="Include" />
           <e p="HomeController.cs" t="Include" />
+          <e p="UserController.cs" t="Include" />
         </e>
         <e p="libman.json" t="Include" />
         <e p="Models" t="Include">
@@ -75,12 +79,14 @@
           <e p="AccountCreateDto.cs" t="Include" />
           <e p="AccountDetailsDto.cs" t="Include" />
           <e p="AccountEditDto.cs" t="Include" />
+          <e p="RegisterDto.cs" t="Include" />
         </e>
         <e p="Views" t="Include">
           <e p="_ViewImports.cshtml" t="Include" />
           <e p="_ViewStart.cshtml" t="Include" />
           <e p="Account" t="Include">
             <e p="_ViewStart.cshtml" t="Include" />
+            <e p="AccountNotFound.cshtml" t="Include" />
             <e p="Create.cshtml" t="Include" />
             <e p="Details.cshtml" t="Include" />
             <e p="Edit.cshtml" t="Include" />
@@ -92,6 +98,11 @@
           </e>
           <e p="Shared" t="Include">
             <e p="_Layout.cshtml" t="Include" />
+            <e p="Error.cshtml" t="Include" />
+            <e p="NotFound.cshtml" t="Include" />
+          </e>
+          <e p="User" t="Include">
+            <e p="Register.cshtml" t="Include" />
           </e>
         </e>
         <e p="web.config" t="Include" />
