@@ -1,4 +1,4 @@
-@model IEnumerable<MoneyManager.Account>
+@model IEnumerable<MoneyManager.Models.Account>
 
 @{
     ViewBag.Title = "Accounts Overview";
@@ -6,9 +6,11 @@
 
 <h1>@ViewBag.Title</h1>
 
-<a asp-controller="Account" asp-action="Create" class="btn btn-outline-primary" type="button">
-    Account
-</a>
+<div>
+    <a asp-controller="Account" asp-action="Create" class="btn btn-outline-primary" type="button">
+        Create Account
+    </a>
+</div>
 
 
 <div class="table-responsive">
@@ -17,6 +19,7 @@
         <tr>
             <th>Account Name</th>
             <th>Balance</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -26,6 +29,7 @@
             <tr>
                 <td>@account.Name</td>
                 <td>€ @account.Balance</td>
+                <td><a asp-controller="Account" asp-action="Edit" asp-route-id="@account.Id">Edit</a> | <a asp-controller="Account" asp-action="Details" asp-route-id="@account.Id">Details</a> | Delete</td>
             </tr>
         }
 

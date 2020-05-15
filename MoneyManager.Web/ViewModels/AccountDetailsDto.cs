@@ -1,4 +1,6 @@
 
+using MoneyManager.Models;
+
 namespace MoneyManager.Web.ViewModels
 {
     // This is an example of a Data Transfer Object or DTO in short.

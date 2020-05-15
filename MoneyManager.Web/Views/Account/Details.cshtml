@@ -1,12 +1,12 @@
-@model MoneyManager.Web.ViewModels.AccountDetailsViewModel
+@model MoneyManager.Web.ViewModels.AccountDetailsDto
 
 @{
-    ViewBag.Title = @Model.PageTitle;
+    ViewBag.Title = "Edit account";
 }
 
 <h1>Transactions</h1>
 <div>
-    <ul class="nav nav-tabs mt-4">
+    <ul class="nav nav-pills nav-fill">
         <li class="nav-item">
             <a class="nav-link active">
                 All Transactions
@@ -14,15 +14,35 @@
         </li>
         <li class="nav-item">
             <a class="nav-link">
-                Test
+                Last month
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link">
-                Test2
+                Last week
             </a>
         </li>
+        
     </ul>
+</div>
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Transaction</th>
+            <th>Amount</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var transaction in Model.Account.Transactions)
+        {
+            <tr>
+                <td>@transaction.Name</td>
+                <td>€ @transaction.Amount</td>
+            </tr>
+        }
+        </tbody>
+    </table>
 </div>
 
 @section Scripts {

@@ -1,7 +1,7 @@
+using MoneyManager.Models;
 using System.Collections.Generic;
-using MoneyManager;
 
-namespace MoneyManager
+namespace MoneyManager.Repositories
 {
     public interface ITransactionRepository
     {

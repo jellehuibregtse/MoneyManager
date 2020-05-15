@@ -1,4 +1,8 @@
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using MoneyManager.Models;
+using MoneyManager.Repositories;
 using MoneyManager.Web.ViewModels;
 
 namespace MoneyManager.Web.Controllers
@@ -21,30 +25,72 @@ namespace MoneyManager.Web.Controllers
 
         public ViewResult Details(int? id)
         {
-            var accountDetailsViewModel = new AccountDetailsDTO()
+            var accountDetailsViewModel = new AccountDetailsDto()
             {
                 Account = _accountRepository.GetAccount(id ?? 1),
                 PageTitle = "Account Details"
             };
-            
+
+            if (accountDetailsViewModel.Account.Transactions == null)
+                accountDetailsViewModel.Account.Transactions = new List<Transaction>();
+
             return View(accountDetailsViewModel);
         }
-        
+
         [HttpGet]
         public ViewResult Create()
         {
             return View();
         }
-        
+
         [HttpPost]
-        public IActionResult Create(Account account)
+        public IActionResult Create(AccountCreateDto model)
         {
             if (!ModelState.IsValid) return View();
-            
-            var newAccount = _accountRepository.Add(account);
-            return RedirectToAction("Index");
 
+            var newAccount = new Account
+            {
+                Id = model.Id,
+                Name = model.Name,
+                Balance = model.Balance
+            };
+
+            _accountRepository.Add(newAccount);
+            return RedirectToAction("Details", new {id = newAccount.Id});
+        }
+
+        [HttpGet]
+        public ViewResult Edit(int id)
+        {
+            var account = _accountRepository.GetAccount(id);
+            var accountEditDto = new AccountEditDto
+            {
+                Id = account.Id,
+                Name = account.Name,
+                Balance = account.Balance
+            };
+            
+            return View(accountEditDto);
+        }
+        
+        [HttpPost]
+        public IActionResult Edit(AccountEditDto model)
+        {
+            if (!ModelState.IsValid) return View();
+
+            var account = _accountRepository.GetAccount(model.Id);
+            account.Name = model.Name;
+            account.Balance = model.Balance;
+            
+            var newAccount = new Account
+            {
+                Id = model.Id,
+                Name = model.Name,
+                Balance = model.Balance
+            };
+
+            _accountRepository.Update(account);
+            return RedirectToAction("Index");
         }
     }
-    
 }

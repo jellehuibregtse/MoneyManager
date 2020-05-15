@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using MoneyManager.Models;
+using MoneyManager.Repositories;
 
 namespace MoneyManager.DAL
 {

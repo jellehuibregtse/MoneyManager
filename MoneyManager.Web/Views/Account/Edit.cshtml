@@ -1,16 +1,18 @@
-@model MoneyManager.Models.Account
+﻿@model MoneyManager.Web.ViewModels.AccountEditDto
 
 @{
-    ViewBag.Title = "Create a new account";
+    ViewBag.Title = "Edit account";
 }
 
-<h1>Create a new account</h1>
 
-<form asp-controller="Account" asp-action="Create" method="post" class="mt-3">
+<h1>Edit account</h1>
+
+<form asp-controller="Account" asp-action="Edit" method="post" class="mt-3">
     <div class="form-group row">
+        <input hidden asp-for="Id"/>
         <label asp-for="Name" class="col-sm-2 col-form-label"></label>
         <div class="col-sm-10">
-            <input asp-for="Name" class="form-control" placeholder="Name" required>
+            <input asp-for="Name" class="form-control" placeholder="@Model.Name" required>
             <span asp-validation-for="Name" class="text-danger"></span>
         </div>
     </div>
@@ -21,7 +23,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text">€</span>
                 </div>
-                <input asp-for="Balance" value="0" asp-format="{0:#,###.00}" class="form-control" required>
+                <input asp-for="Balance" value="0" asp-format="{0:#,###.00}" class="form-control" placeholder="@Model.Balance" required>
                 <span asp-validation-for="Balance" class="text-danger"></span>
             </div>
         </div>
@@ -32,7 +34,8 @@
 
     <div class="form-group row">
         <div class="col-sm-10">
-            <button type="submit" class="btn btn-primary">Create</button>
+            <button type="submit" class="btn btn-primary">Update</button>
+            <a asp-controller="Account" asp-action="Index" class="btn btn-primary">Cancel</a>
         </div>
     </div>
 
