@@ -34,13 +34,15 @@ namespace MoneyManager.Web.Controllers
                 Response.StatusCode = 404;
                 return View("AccountNotFound", id.Value);
             }
-
+            
             var accountDetailsViewModel = new AccountDetailsDto()
             {
                 Account = account,
                 PageTitle = "Account Details"
             };
 
+            accountDetailsViewModel.Account.Transactions ??= new List<Transaction>();
+            
             return View(accountDetailsViewModel);
         }
 

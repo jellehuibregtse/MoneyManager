@@ -1,34 +1,28 @@
 ﻿@model LoginDto
 
 @{
+    Layout = "_LoginLayout";
     ViewBag.Title = "User Login";
 }
 
-<h1>User Login</h1>
-
-<div class="row">
-    <div class="col-md-12">
-        <form method="post">
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Email"></label>
-                <input asp-for="Email" class="form-control"/>
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Password"></label>
-                <input asp-for="Password" class="form-control"/>
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <div class="checkbox">
-                    <label asp-for="RememberMe">
-                        <input asp-for="RememberMe"/>
-                        @Html.DisplayNameFor(model => model.RememberMe)
-                    </label>
-                </div>
-            </div>
-            <button type="submit" class="btn btn-primary">Login</button>
-        </form>
+<form method="post" class="form-signin">
+    <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+    <h1 >Please Login</h1>
+    <hr/>
+    <label asp-for="Email" class="sr-only"></label>
+    <input asp-for="Email" class="form-control" placeholder="Email address" required autofocus/>
+    <span asp-validation-for="Email" class="text-danger"></span>
+    <label asp-for="Password" class="sr-only"></label>
+    <input asp-for="Password" class="form-control"placeholder="Password" required/>
+    <span asp-validation-for="Password" class="text-danger"></span>
+    <div class="checkbox mb-3">
+        <label asp-for="RememberMe">
+            <input asp-for="RememberMe"/>
+            @Html.DisplayNameFor(model => model.RememberMe)
+        </label>
     </div>
-</div>
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+    <p class="mt-2">Don't have an account? <a asp-action="Register" asp-controller="User">Register here!</a></p>
+
+</form>
