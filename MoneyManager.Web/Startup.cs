@@ -26,8 +26,14 @@ namespace MoneyManager.Web
             services.AddDbContextPool<AppDbContext>(options => 
                 options.UseSqlServer(_config.GetConnectionString("MoneyManagerDBConnection")));
 
-            services.AddIdentity<IdentityUser, IdentityRole>()
+            services.AddIdentity<IdentityUser, IdentityRole>(options =>
+                {
+                    options.Password.RequiredLength = 8;
+                    options.Password.RequiredUniqueChars = 3;
+                })
                 .AddEntityFrameworkStores<AppDbContext>();
+            
+            services.ConfigureApplicationCookie(options => options.LoginPath = "/user/login");
             
             services.AddMvc(options => options.EnableEndpointRouting = false);
             services.AddScoped<IAccountRepository, SqlAccountRepository>();
@@ -42,7 +48,7 @@ namespace MoneyManager.Web
             }
             else
             {
-                app.UseExceptionHandler("/Error/");
+                app.UseExceptionHandler("/Error");
                 app.UseStatusCodePagesWithRedirects("/Error/{0}");
             }
 

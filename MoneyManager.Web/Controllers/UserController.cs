@@ -15,7 +15,15 @@ namespace MoneyManager.Web.Controllers
             _userManager = userManager;
             _signInManager = signInManager;
         }
-        
+
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+
+            return RedirectToAction("Index", "Home");
+        }
+
         [HttpGet]
         public IActionResult Register()
         {
@@ -26,7 +34,7 @@ namespace MoneyManager.Web.Controllers
         public async Task<IActionResult> Register(RegisterDto model)
         {
             if (!ModelState.IsValid) return View(model);
-            
+
             var user = new IdentityUser()
             {
                 UserName = model.Email,
@@ -43,9 +51,35 @@ namespace MoneyManager.Web.Controllers
 
             foreach (var error in result.Errors)
             {
-                ModelState.AddModelError("", error.Description);
+                ModelState.AddModelError(string.Empty, error.Description);
             }
-            
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginDto model, string returnUrl)
+        {
+            if (!ModelState.IsValid) return View(model);
+
+            var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
+
+            if (result.Succeeded)
+            {
+                if (!string.IsNullOrEmpty(returnUrl))
+                    return Redirect(returnUrl);
+                        
+                return RedirectToAction("Index", "Home");
+            }
+
+            ModelState.AddModelError(string.Empty, "Invalid Login Attempt");
+
             return View(model);
         }
     }

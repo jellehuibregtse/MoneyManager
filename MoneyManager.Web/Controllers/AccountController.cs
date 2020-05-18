@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MoneyManager.Models;
 using MoneyManager.Repositories;
@@ -7,6 +8,7 @@ using MoneyManager.Web.ViewModels;
 
 namespace MoneyManager.Web.Controllers
 {
+    [Authorize]
     public class AccountController : Controller
     {
         private readonly IAccountRepository _accountRepository;
