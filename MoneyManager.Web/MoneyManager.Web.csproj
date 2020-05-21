@@ -16,7 +16,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\MoneyManager.DAL\MoneyManager.DAL.csproj" />
-      <ProjectReference Include="..\MoneyManager\MoneyManager.csproj" />
+      <ProjectReference Include="..\MoneyManager.Domain\MoneyManager.Domain.csproj" />
     </ItemGroup>
 
     <ItemGroup>

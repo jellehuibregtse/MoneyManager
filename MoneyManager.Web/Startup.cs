@@ -6,7 +6,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MoneyManager.DAL;
-using MoneyManager.Repositories;
+using MoneyManager.Domain.Models;
+using MoneyManager.Domain.Repositories;
 
 namespace MoneyManager.Web
 {
@@ -26,7 +27,7 @@ namespace MoneyManager.Web
             services.AddDbContextPool<AppDbContext>(options => 
                 options.UseSqlServer(_config.GetConnectionString("MoneyManagerDBConnection")));
 
-            services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
                 {
                     options.Password.RequiredLength = 8;
                     options.Password.RequiredUniqueChars = 3;

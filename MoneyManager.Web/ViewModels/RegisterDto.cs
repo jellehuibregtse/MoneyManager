@@ -1,11 +1,18 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc;
+using MoneyManager.Domain.Models;
 
 namespace MoneyManager.Web.ViewModels
 {
     public class RegisterDto
     {
+        [Required]
+        public string Name { get; set; }
         [Required,
-         EmailAddress]
+         EmailAddress,
+         Remote("IsEmailInUse", "User")]
         public string Email { get; set; }
 
         [Required,
@@ -17,5 +24,7 @@ namespace MoneyManager.Web.ViewModels
          Compare("Password",
              ErrorMessage = "Passwords do not match.")]
         public string ConfirmPassword { get; set; }
+        public DateTime RegistrationDate { get; set; }
+        public List<Account> Accounts { get; set; }
     }
 }

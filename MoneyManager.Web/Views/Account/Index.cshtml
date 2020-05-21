@@ -1,4 +1,4 @@
-@model IEnumerable<MoneyManager.Models.Account>
+@model IEnumerable<Account>
 
 @{
     ViewBag.Title = "Accounts Overview";
@@ -23,7 +23,7 @@
         </tr>
         </thead>
         <tbody>
-
+        
         @foreach (var account in Model)
         {
             <tr>

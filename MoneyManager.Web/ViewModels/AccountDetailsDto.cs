@@ -1,5 +1,5 @@
 
-using MoneyManager.Models;
+using MoneyManager.Domain.Models;
 
 namespace MoneyManager.Web.ViewModels
 {

@@ -1,9 +1,10 @@
 using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using MoneyManager.Models;
-using MoneyManager.Repositories;
+using MoneyManager.Domain.Models;
+using MoneyManager.Domain.Repositories;
 using MoneyManager.Web.ViewModels;
 
 namespace MoneyManager.Web.Controllers
@@ -12,22 +13,24 @@ namespace MoneyManager.Web.Controllers
     public class AccountController : Controller
     {
         private readonly IAccountRepository _accountRepository;
+        private readonly UserManager<ApplicationUser> _userManager;
 
         // Inject the interface using constructor injection
-        public AccountController(IAccountRepository accountRepository)
+        public AccountController(IAccountRepository accountRepository, UserManager<ApplicationUser> userManager)
         {
             _accountRepository = accountRepository;
+            _userManager = userManager;
         }
 
         public ViewResult Index()
         {
-            var model = _accountRepository.GetAllAccounts();
+            var model = _accountRepository.GetAllAccounts(GetCurrentUser());
             return View(model);
         }
 
         public ViewResult Details(int? id)
         {
-            var account = _accountRepository.GetAccount(id.Value);
+            var account = _accountRepository.GetAccount(id.Value, GetCurrentUser());
 
             if (account == null)
             {
@@ -61,7 +64,8 @@ namespace MoneyManager.Web.Controllers
             {
                 Id = model.Id,
                 Name = model.Name,
-                Balance = model.Balance
+                Balance = model.Balance,
+                ApplicationUser = GetCurrentUser()
             };
 
             _accountRepository.Add(newAccount);
@@ -71,7 +75,7 @@ namespace MoneyManager.Web.Controllers
         [HttpGet]
         public ViewResult Edit(int id)
         {
-            var account = _accountRepository.GetAccount(id);
+            var account = _accountRepository.GetAccount(id, GetCurrentUser());
             var accountEditDto = new AccountEditDto
             {
                 Id = account.Id,
@@ -87,7 +91,7 @@ namespace MoneyManager.Web.Controllers
         {
             if (!ModelState.IsValid) return View();
 
-            var account = _accountRepository.GetAccount(model.Id);
+            var account = _accountRepository.GetAccount(model.Id, GetCurrentUser());
             account.Name = model.Name;
             account.Balance = model.Balance;
 
@@ -100,6 +104,11 @@ namespace MoneyManager.Web.Controllers
 
             _accountRepository.Update(account);
             return RedirectToAction("Index");
+        }
+
+        private ApplicationUser GetCurrentUser()
+        {
+            return _userManager.GetUserAsync(User).Result;
         }
     }
 }

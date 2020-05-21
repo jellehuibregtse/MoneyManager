@@ -1,7 +1,8 @@
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using MoneyManager.Models;
-using MoneyManager.Repositories;
+using MoneyManager.Domain.Models;
+using MoneyManager.Domain.Repositories;
 
 namespace MoneyManager.DAL
 {
@@ -14,14 +15,14 @@ namespace MoneyManager.DAL
             _context = context;
         }
         
-        public Account GetAccount(int accountId)
+        public Account GetAccount(int accountId, ApplicationUser applicationUser)
         {
-            return _context.Accounts.Find(accountId);
+            return _context.Accounts.Find(accountId).ApplicationUser == applicationUser ? _context.Accounts.Find(accountId) : null;
         }
 
-        public IEnumerable<Account> GetAllAccounts()
+        public IEnumerable<Account> GetAllAccounts(ApplicationUser applicationUser)
         {
-            return _context.Accounts;
+            return _context.Accounts.Where(account => account.ApplicationUser == applicationUser);
         }
 
         public Account Add(Account account)

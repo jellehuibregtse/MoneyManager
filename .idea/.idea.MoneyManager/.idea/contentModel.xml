@@ -3,40 +3,18 @@
   <component name="ContentModelStore">
     <e p="C:\Users\Jelle\AppData\local\JetBrains\Rider2020.1\extResources" t="IncludeRecursive" />
     <e p="C:\Users\Jelle\AppData\local\JetBrains\Rider2020.1\resharper-host\local\Transient\ReSharperHost\v201\SolutionCaches\_MoneyManager.-541447322.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Jelle\AppData\Roaming\JetBrains\Rider2020.1\consoles\db" t="IncludeRecursive" />
+    <e p="C:\Users\Jelle\AppData\Roaming\JetBrains\Rider2020.1\extensions" t="IncludeRecursive" />
     <e p="C:\Users\Jelle\AppData\Roaming\JetBrains\Rider2020.1\javascript\extLibs\http_stackpath.bootstrapcdn.com_bootstrap_4.3.1_css_bootstrap.css" t="IncludeRecursive" />
     <e p="C:\Users\Jelle\Documents\GitHub\MoneyManager" t="IncludeFlat">
-      <e p="MoneyManager" t="IncludeRecursive">
-        <e p="bin" t="ExcludeRecursive" />
-        <e p="Models" t="Include">
-          <e p="Account.cs" t="Include" />
-          <e p="Category.cs" t="Include" />
-          <e p="Transaction.cs" t="Include" />
-          <e p="User.cs" t="Include" />
-        </e>
-        <e p="MoneyManager.csproj" t="IncludeRecursive" />
-        <e p="obj" t="ExcludeRecursive">
-          <e p="Debug" t="Include">
-            <e p="netcoreapp3.1" t="Include">
-              <e p="MoneyManager.AssemblyInfo.cs" t="Include" />
-            </e>
-          </e>
-        </e>
-        <e p="Repositories" t="Include">
-          <e p="IAccountRepository.cs" t="Include" />
-          <e p="ITransactionRepository.cs" t="Include" />
-        </e>
-      </e>
       <e p="MoneyManager.DAL" t="IncludeRecursive">
         <e p="AppDbContext.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="Migrations" t="Include">
-          <e p="20200515090608_InitialMigration.cs" t="Include" />
-          <e p="20200515090608_InitialMigration.Designer.cs" t="Include" />
-          <e p="20200515122713_AddedIdentity.cs" t="Include" />
-          <e p="20200515122713_AddedIdentity.Designer.cs" t="Include" />
+          <e p="20200520123849_Initial.cs" t="Include" />
+          <e p="20200520123849_Initial.Designer.cs" t="Include" />
           <e p="AppDbContextModelSnapshot.cs" t="Include" />
         </e>
-        <e p="ModelBuilderExtensions.cs" t="Include" />
         <e p="MoneyManager.DAL.csproj" t="IncludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
@@ -46,6 +24,27 @@
           </e>
         </e>
         <e p="SQLAccountRepository.cs" t="Include" />
+      </e>
+      <e p="MoneyManager.Domain" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Models" t="Include">
+          <e p="Account.cs" t="Include" />
+          <e p="ApplicationUser.cs" t="Include" />
+          <e p="Category.cs" t="Include" />
+          <e p="Transaction.cs" t="Include" />
+        </e>
+        <e p="MoneyManager.Domain.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="MoneyManager.Domain.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Repositories" t="Include">
+          <e p="IAccountRepository.cs" t="Include" />
+          <e p="ITransactionRepository.cs" t="Include" />
+        </e>
       </e>
       <e p="MoneyManager.sln" t="IncludeFlat" />
       <e p="MoneyManager.Web" t="IncludeRecursive">
@@ -59,9 +58,6 @@
           <e p="UserController.cs" t="Include" />
         </e>
         <e p="libman.json" t="Include" />
-        <e p="Models" t="Include">
-          <e p="MockAccountRepository.cs" t="Include" />
-        </e>
         <e p="MoneyManager.Web.csproj" t="IncludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
@@ -80,6 +76,7 @@
           <e p="AccountCreateDto.cs" t="Include" />
           <e p="AccountDetailsDto.cs" t="Include" />
           <e p="AccountEditDto.cs" t="Include" />
+          <e p="AccountIndexDto.cs" t="Include" />
           <e p="LoginDto.cs" t="Include" />
           <e p="RegisterDto.cs" t="Include" />
         </e>
@@ -157,6 +154,142 @@
               <e p="jquery.slim.js" t="Include" />
               <e p="jquery.slim.min.js" t="Include" />
               <e p="jquery.slim.min.map" t="Include" />
+            </e>
+            <e p="jquery-validate" t="Include">
+              <e p="additional-methods.js" t="Include" />
+              <e p="additional-methods.min.js" t="Include" />
+              <e p="jquery.validate.js" t="Include" />
+              <e p="jquery.validate.min.js" t="Include" />
+              <e p="localization" t="Include">
+                <e p="messages_ar.js" t="Include" />
+                <e p="messages_ar.min.js" t="Include" />
+                <e p="messages_az.js" t="Include" />
+                <e p="messages_az.min.js" t="Include" />
+                <e p="messages_bg.js" t="Include" />
+                <e p="messages_bg.min.js" t="Include" />
+                <e p="messages_bn_BD.js" t="Include" />
+                <e p="messages_bn_BD.min.js" t="Include" />
+                <e p="messages_ca.js" t="Include" />
+                <e p="messages_ca.min.js" t="Include" />
+                <e p="messages_cs.js" t="Include" />
+                <e p="messages_cs.min.js" t="Include" />
+                <e p="messages_da.js" t="Include" />
+                <e p="messages_da.min.js" t="Include" />
+                <e p="messages_de.js" t="Include" />
+                <e p="messages_de.min.js" t="Include" />
+                <e p="messages_el.js" t="Include" />
+                <e p="messages_el.min.js" t="Include" />
+                <e p="messages_es.js" t="Include" />
+                <e p="messages_es.min.js" t="Include" />
+                <e p="messages_es_AR.js" t="Include" />
+                <e p="messages_es_AR.min.js" t="Include" />
+                <e p="messages_es_PE.js" t="Include" />
+                <e p="messages_es_PE.min.js" t="Include" />
+                <e p="messages_et.js" t="Include" />
+                <e p="messages_et.min.js" t="Include" />
+                <e p="messages_eu.js" t="Include" />
+                <e p="messages_eu.min.js" t="Include" />
+                <e p="messages_fa.js" t="Include" />
+                <e p="messages_fa.min.js" t="Include" />
+                <e p="messages_fi.js" t="Include" />
+                <e p="messages_fi.min.js" t="Include" />
+                <e p="messages_fr.js" t="Include" />
+                <e p="messages_fr.min.js" t="Include" />
+                <e p="messages_ge.js" t="Include" />
+                <e p="messages_ge.min.js" t="Include" />
+                <e p="messages_gl.js" t="Include" />
+                <e p="messages_gl.min.js" t="Include" />
+                <e p="messages_he.js" t="Include" />
+                <e p="messages_he.min.js" t="Include" />
+                <e p="messages_hr.js" t="Include" />
+                <e p="messages_hr.min.js" t="Include" />
+                <e p="messages_hu.js" t="Include" />
+                <e p="messages_hu.min.js" t="Include" />
+                <e p="messages_hy_AM.js" t="Include" />
+                <e p="messages_hy_AM.min.js" t="Include" />
+                <e p="messages_id.js" t="Include" />
+                <e p="messages_id.min.js" t="Include" />
+                <e p="messages_is.js" t="Include" />
+                <e p="messages_is.min.js" t="Include" />
+                <e p="messages_it.js" t="Include" />
+                <e p="messages_it.min.js" t="Include" />
+                <e p="messages_ja.js" t="Include" />
+                <e p="messages_ja.min.js" t="Include" />
+                <e p="messages_ka.js" t="Include" />
+                <e p="messages_ka.min.js" t="Include" />
+                <e p="messages_kk.js" t="Include" />
+                <e p="messages_kk.min.js" t="Include" />
+                <e p="messages_ko.js" t="Include" />
+                <e p="messages_ko.min.js" t="Include" />
+                <e p="messages_lt.js" t="Include" />
+                <e p="messages_lt.min.js" t="Include" />
+                <e p="messages_lv.js" t="Include" />
+                <e p="messages_lv.min.js" t="Include" />
+                <e p="messages_mk.js" t="Include" />
+                <e p="messages_mk.min.js" t="Include" />
+                <e p="messages_my.js" t="Include" />
+                <e p="messages_my.min.js" t="Include" />
+                <e p="messages_nl.js" t="Include" />
+                <e p="messages_nl.min.js" t="Include" />
+                <e p="messages_no.js" t="Include" />
+                <e p="messages_no.min.js" t="Include" />
+                <e p="messages_pl.js" t="Include" />
+                <e p="messages_pl.min.js" t="Include" />
+                <e p="messages_pt_BR.js" t="Include" />
+                <e p="messages_pt_BR.min.js" t="Include" />
+                <e p="messages_pt_PT.js" t="Include" />
+                <e p="messages_pt_PT.min.js" t="Include" />
+                <e p="messages_ro.js" t="Include" />
+                <e p="messages_ro.min.js" t="Include" />
+                <e p="messages_ru.js" t="Include" />
+                <e p="messages_ru.min.js" t="Include" />
+                <e p="messages_sd.js" t="Include" />
+                <e p="messages_sd.min.js" t="Include" />
+                <e p="messages_si.js" t="Include" />
+                <e p="messages_si.min.js" t="Include" />
+                <e p="messages_sk.js" t="Include" />
+                <e p="messages_sk.min.js" t="Include" />
+                <e p="messages_sl.js" t="Include" />
+                <e p="messages_sl.min.js" t="Include" />
+                <e p="messages_sr.js" t="Include" />
+                <e p="messages_sr.min.js" t="Include" />
+                <e p="messages_sr_lat.js" t="Include" />
+                <e p="messages_sr_lat.min.js" t="Include" />
+                <e p="messages_sv.js" t="Include" />
+                <e p="messages_sv.min.js" t="Include" />
+                <e p="messages_th.js" t="Include" />
+                <e p="messages_th.min.js" t="Include" />
+                <e p="messages_tj.js" t="Include" />
+                <e p="messages_tj.min.js" t="Include" />
+                <e p="messages_tr.js" t="Include" />
+                <e p="messages_tr.min.js" t="Include" />
+                <e p="messages_uk.js" t="Include" />
+                <e p="messages_uk.min.js" t="Include" />
+                <e p="messages_ur.js" t="Include" />
+                <e p="messages_ur.min.js" t="Include" />
+                <e p="messages_vi.js" t="Include" />
+                <e p="messages_vi.min.js" t="Include" />
+                <e p="messages_zh.js" t="Include" />
+                <e p="messages_zh.min.js" t="Include" />
+                <e p="messages_zh_TW.js" t="Include" />
+                <e p="messages_zh_TW.min.js" t="Include" />
+                <e p="methods_de.js" t="Include" />
+                <e p="methods_de.min.js" t="Include" />
+                <e p="methods_es_CL.js" t="Include" />
+                <e p="methods_es_CL.min.js" t="Include" />
+                <e p="methods_fi.js" t="Include" />
+                <e p="methods_fi.min.js" t="Include" />
+                <e p="methods_it.js" t="Include" />
+                <e p="methods_it.min.js" t="Include" />
+                <e p="methods_nl.js" t="Include" />
+                <e p="methods_nl.min.js" t="Include" />
+                <e p="methods_pt.js" t="Include" />
+                <e p="methods_pt.min.js" t="Include" />
+              </e>
+            </e>
+            <e p="jquery-validation-unobtrusive" t="Include">
+              <e p="jquery.validate.unobtrusive.js" t="Include" />
+              <e p="jquery.validate.unobtrusive.min.js" t="Include" />
             </e>
           </e>
         </e>
