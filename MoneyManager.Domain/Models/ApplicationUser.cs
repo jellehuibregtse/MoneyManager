@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace MoneyManager.Domain.Models
+namespace MoneyManager.Models
 {
     public class ApplicationUser : IdentityUser
     {

@@ -6,8 +6,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MoneyManager.DAL;
-using MoneyManager.Domain.Models;
-using MoneyManager.Domain.Repositories;
+using MoneyManager.Models;
+using MoneyManager.Repositories;
 
 namespace MoneyManager.Web
 {

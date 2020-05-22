@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using MoneyManager.Domain.Models;
-using MoneyManager.Domain.Repositories;
+using MoneyManager.Models;
+using MoneyManager.Repositories;
 
 namespace MoneyManager.DAL
 {
@@ -14,10 +14,12 @@ namespace MoneyManager.DAL
         {
             _context = context;
         }
-        
+
         public Account GetAccount(int accountId, ApplicationUser applicationUser)
         {
-            return _context.Accounts.Find(accountId).ApplicationUser == applicationUser ? _context.Accounts.Find(accountId) : null;
+            var account = _context.Accounts.Find(accountId);
+
+            return account.ApplicationUser == applicationUser ? account : null;
         }
 
         public IEnumerable<Account> GetAllAccounts(ApplicationUser applicationUser)
@@ -29,6 +31,7 @@ namespace MoneyManager.DAL
         {
             _context.Accounts.Add(account);
             _context.SaveChanges();
+
             return account;
         }
 
@@ -37,6 +40,7 @@ namespace MoneyManager.DAL
             var account = _context.Accounts.Attach(updatedAccount);
             account.State = EntityState.Modified;
             _context.SaveChanges();
+
             return updatedAccount;
         }
 

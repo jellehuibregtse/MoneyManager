@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
-using MoneyManager.Domain.Models;
+using MoneyManager.Models;
 
 namespace MoneyManager.Web.ViewModels
 {

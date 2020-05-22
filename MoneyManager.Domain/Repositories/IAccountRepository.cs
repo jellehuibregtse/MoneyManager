@@ -1,7 +1,7 @@
-using MoneyManager.Domain.Models;
+using MoneyManager.Models;
 using System.Collections.Generic;
 
-namespace MoneyManager.Domain.Repositories
+namespace MoneyManager.Repositories
 {
     public interface IAccountRepository
     {

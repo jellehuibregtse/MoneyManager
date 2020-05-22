@@ -1,4 +1,6 @@
-﻿namespace MoneyManager.Web.ViewModels
+﻿using System;
+
+namespace MoneyManager.Web.ViewModels
 {
     public class AccountCreateDto
     {

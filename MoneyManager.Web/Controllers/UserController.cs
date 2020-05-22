@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using MoneyManager.Domain.Models;
+using MoneyManager.Models;
 using MoneyManager.Web.ViewModels;
 
 namespace MoneyManager.Web.Controllers

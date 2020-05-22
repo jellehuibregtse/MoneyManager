@@ -1,10 +1,11 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using MoneyManager.Domain.Models;
-using MoneyManager.Domain.Repositories;
+using MoneyManager.Models;
+using MoneyManager.Repositories;
 using MoneyManager.Web.ViewModels;
 
 namespace MoneyManager.Web.Controllers
@@ -47,6 +48,22 @@ namespace MoneyManager.Web.Controllers
             accountDetailsViewModel.Account.Transactions ??= new List<Transaction>();
             
             return View(accountDetailsViewModel);
+        }
+
+        public ViewResult Delete(int id)
+        {
+            var account = _accountRepository.GetAccount(id, GetCurrentUser());
+
+            if (account == null)
+            {
+                Response.StatusCode = 404;
+                return View("AccountNotFound", id);
+            }
+
+            _accountRepository.Delete(id);
+            
+            var model = _accountRepository.GetAllAccounts(GetCurrentUser());
+            return View("Index", model);
         }
 
         [HttpGet]

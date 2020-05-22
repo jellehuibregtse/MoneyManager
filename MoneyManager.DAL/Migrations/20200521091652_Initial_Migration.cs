@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MoneyManager.DAL.Migrations
 {
-    public partial class Initial : Migration
+    public partial class Initial_Migration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -54,6 +54,9 @@ namespace MoneyManager.DAL.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    UpdatedOn = table.Column<DateTime>(nullable: true),
+                    LastAccessed = table.Column<DateTime>(nullable: false),
                     Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -88,6 +91,9 @@ namespace MoneyManager.DAL.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    UpdatedOn = table.Column<DateTime>(nullable: true),
+                    LastAccessed = table.Column<DateTime>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     Balance = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     ApplicationUserId = table.Column<string>(nullable: false)
@@ -193,6 +199,9 @@ namespace MoneyManager.DAL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    UpdatedOn = table.Column<DateTime>(nullable: true),
+                    LastAccessed = table.Column<DateTime>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     AccountId = table.Column<int>(nullable: false)

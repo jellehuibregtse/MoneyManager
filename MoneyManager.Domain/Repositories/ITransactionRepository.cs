@@ -1,11 +1,14 @@
-using MoneyManager.Domain.Models;
+using MoneyManager.Models;
 using System.Collections.Generic;
 
-namespace MoneyManager.Domain.Repositories
+namespace MoneyManager.Repositories
 {
     public interface ITransactionRepository
     {
-        Transaction GetTransaction(int transactionId);
-        IEnumerable<Transaction> GetAllTransactions();
+        Transaction GetTransaction(int transactionId, Account account);
+        IEnumerable<Transaction> GetAllTransactions(Account account);
+        Transaction Add(Transaction transaction);
+        Transaction Update(Transaction updatedTransaction);
+        Transaction Delete(int transactionId);
     }
 }

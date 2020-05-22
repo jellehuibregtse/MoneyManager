@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using MoneyManager.Domain.Models;
+using MoneyManager.Models;
 
 namespace MoneyManager.DAL
 {

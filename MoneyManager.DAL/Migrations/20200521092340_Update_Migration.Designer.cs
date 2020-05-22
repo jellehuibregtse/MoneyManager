@@ -10,8 +10,8 @@ using MoneyManager.DAL;
 namespace MoneyManager.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200520123849_Initial")]
-    partial class Initial
+    [Migration("20200521092340_Update_Migration")]
+    partial class Update_Migration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -152,7 +152,7 @@ namespace MoneyManager.DAL.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("MoneyManager.Domain.Models.Account", b =>
+            modelBuilder.Entity("MoneyManager.Models.Account", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -166,6 +166,10 @@ namespace MoneyManager.DAL.Migrations
                     b.Property<decimal>("Balance")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<DateTime>("CreatedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -176,7 +180,7 @@ namespace MoneyManager.DAL.Migrations
                     b.ToTable("Accounts");
                 });
 
-            modelBuilder.Entity("MoneyManager.Domain.Models.ApplicationUser", b =>
+            modelBuilder.Entity("MoneyManager.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -249,12 +253,16 @@ namespace MoneyManager.DAL.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("MoneyManager.Domain.Models.Category", b =>
+            modelBuilder.Entity("MoneyManager.Models.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -264,7 +272,7 @@ namespace MoneyManager.DAL.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("MoneyManager.Domain.Models.Transaction", b =>
+            modelBuilder.Entity("MoneyManager.Models.Transaction", b =>
                 {
                     b.Property<int>("Id")
                         .HasColumnType("int");
@@ -274,6 +282,10 @@ namespace MoneyManager.DAL.Migrations
 
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -296,7 +308,7 @@ namespace MoneyManager.DAL.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("MoneyManager.Domain.Models.ApplicationUser", null)
+                    b.HasOne("MoneyManager.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -305,7 +317,7 @@ namespace MoneyManager.DAL.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("MoneyManager.Domain.Models.ApplicationUser", null)
+                    b.HasOne("MoneyManager.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -320,7 +332,7 @@ namespace MoneyManager.DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MoneyManager.Domain.Models.ApplicationUser", null)
+                    b.HasOne("MoneyManager.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -329,33 +341,33 @@ namespace MoneyManager.DAL.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("MoneyManager.Domain.Models.ApplicationUser", null)
+                    b.HasOne("MoneyManager.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("MoneyManager.Domain.Models.Account", b =>
+            modelBuilder.Entity("MoneyManager.Models.Account", b =>
                 {
-                    b.HasOne("MoneyManager.Domain.Models.ApplicationUser", "ApplicationUser")
+                    b.HasOne("MoneyManager.Models.ApplicationUser", "ApplicationUser")
                         .WithMany("Accounts")
                         .HasForeignKey("ApplicationUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("MoneyManager.Domain.Models.Transaction", b =>
+            modelBuilder.Entity("MoneyManager.Models.Transaction", b =>
                 {
-                    b.HasOne("MoneyManager.Domain.Models.Account", "Account")
+                    b.HasOne("MoneyManager.Models.Account", "Account")
                         .WithMany("Transactions")
                         .HasForeignKey("AccountId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MoneyManager.Domain.Models.Category", "Category")
+                    b.HasOne("MoneyManager.Models.Category", "Category")
                         .WithOne("Transaction")
-                        .HasForeignKey("MoneyManager.Domain.Models.Transaction", "Id")
+                        .HasForeignKey("MoneyManager.Models.Transaction", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
