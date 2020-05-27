@@ -17,7 +17,7 @@ namespace MoneyManager.DAL
 
         public Account GetAccount(int accountId, ApplicationUser applicationUser)
         {
-            var account = _context.Accounts.Find(accountId);
+            var account = _context.Accounts.Include(a => a.Transactions).SingleOrDefault(a => a.Id == accountId);
 
             return account.ApplicationUser == applicationUser ? account : null;
         }
