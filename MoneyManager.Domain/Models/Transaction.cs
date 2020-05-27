@@ -6,7 +6,7 @@ namespace MoneyManager.Models
 {
     public class Transaction
     {
-        public int TransactionId { get; set; }
+        public int Id { get; set; }
         public int AccountId { get; set; }
         [StringLength(50, MinimumLength = 3)] public string Name { get; set; }
 

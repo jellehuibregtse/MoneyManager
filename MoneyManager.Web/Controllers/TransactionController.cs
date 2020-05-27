@@ -1,4 +1,6 @@
-﻿using System.Security.Claims;
+﻿using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -40,9 +42,9 @@ namespace MoneyManager.Web.Controllers
         }
         
         [HttpGet]
-        public ViewResult Add()
+        public ViewResult Add(int accountId)
         {
-            return View();
+            return View(new TransactionAddDto {AccountId = accountId});
         }
 
         [HttpPost]
@@ -52,14 +54,15 @@ namespace MoneyManager.Web.Controllers
 
             var newTransaction = new Transaction()
             {
-                TransactionId = model.TransactionId,
+                Id = model.TransactionId,
                 Name = model.Name,
                 Amount = model.Amount,
-                
+                AccountId = model.AccountId,
+                //Account = _userManager.GetUserAsync(User).Result.Accounts.First(account => account.Id == model.AccountId)
             };
             
             _transactionRepository.Add(newTransaction);
-            return RedirectToAction("Details", new {id = newTransaction.TransactionId});
+            return RedirectToAction("Details", new {id = newTransaction.Id});
         }
     }
 }
