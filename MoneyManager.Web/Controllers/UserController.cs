@@ -50,7 +50,8 @@ namespace MoneyManager.Web.Controllers
 
             var user = new ApplicationUser()
             {
-                Name = model.Name,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
                 UserName = model.Email,
                 Email = model.Email,
                 RegistrationDate = DateTime.Today,

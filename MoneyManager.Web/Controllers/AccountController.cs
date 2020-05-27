@@ -79,14 +79,14 @@ namespace MoneyManager.Web.Controllers
 
             var newAccount = new Account
             {
-                Id = model.Id,
+                AccountId = model.AccountId,
                 Name = model.Name,
                 Balance = model.Balance,
                 ApplicationUser = GetCurrentUser()
             };
 
             _accountRepository.Add(newAccount);
-            return RedirectToAction("Details", new {id = newAccount.Id});
+            return RedirectToAction("Details", new {id = newAccount.AccountId});
         }
 
         [HttpGet]
@@ -95,7 +95,7 @@ namespace MoneyManager.Web.Controllers
             var account = _accountRepository.GetAccount(id, GetCurrentUser());
             var accountEditDto = new AccountEditDto
             {
-                Id = account.Id,
+                AccountId = account.AccountId,
                 Name = account.Name,
                 Balance = account.Balance
             };
@@ -108,16 +108,9 @@ namespace MoneyManager.Web.Controllers
         {
             if (!ModelState.IsValid) return View();
 
-            var account = _accountRepository.GetAccount(model.Id, GetCurrentUser());
+            var account = _accountRepository.GetAccount(model.AccountId, GetCurrentUser());
             account.Name = model.Name;
             account.Balance = model.Balance;
-
-            var newAccount = new Account
-            {
-                Id = model.Id,
-                Name = model.Name,
-                Balance = model.Balance
-            };
 
             _accountRepository.Update(account);
             return RedirectToAction("Index");

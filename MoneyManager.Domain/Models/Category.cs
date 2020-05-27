@@ -2,9 +2,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MoneyManager.Models
 {
-    public class Category : Entity
+    public class Category
     {
-        public string Name { get; set; }
+        public int CategoryId { get; set; }
+        public int TransactionId { get; set; }
+
+        [StringLength(50, MinimumLength = 3)] public string Name { get; set; }
         public Transaction Transaction { get; set; }
     }
 }

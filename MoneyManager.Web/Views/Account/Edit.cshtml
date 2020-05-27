@@ -9,7 +9,7 @@
 
 <form asp-controller="Account" asp-action="Edit" method="post" class="mt-3">
     <div class="form-group row">
-        <input hidden asp-for="Id"/>
+        <input hidden asp-for="AccountId"/>
         <label asp-for="Name" class="col-sm-2 col-form-label"></label>
         <div class="col-sm-10">
             <input asp-for="Name" class="form-control" placeholder="@Model.Name" required>

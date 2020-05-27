@@ -10,7 +10,6 @@ namespace MoneyManager.DAL
         public AppDbContext(DbContextOptions options) : base(options)
         {
         }
-        public DbSet<ApplicationUser> Users { get; set; }
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<Category> Categories { get; set; }
@@ -18,10 +17,16 @@ namespace MoneyManager.DAL
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<ApplicationUser>().HasMany(user => user.Accounts).WithOne(account => account.ApplicationUser).IsRequired();
-            modelBuilder.Entity<Account>().HasMany(account => account.Transactions).WithOne(transaction => transaction.Account).IsRequired();
-            modelBuilder.Entity<Transaction>().HasOne(transaction => transaction.Category).WithOne(category => category.Transaction).IsRequired()
-                .HasForeignKey<Transaction>(transaction => transaction.Id);
-        }
+
+            modelBuilder.Entity<Account>().ToTable("Account");
+            modelBuilder.Entity<Transaction>().ToTable("Transaction");
+            modelBuilder.Entity<Category>().ToTable("Category");
+            
+            modelBuilder.Entity<Account>()
+                .HasMany(account => account.Transactions)
+                .WithOne(transaction => transaction.Account)
+                .HasForeignKey(transaction => transaction.AccountId)
+                .IsRequired();
+        }    
     }
 }

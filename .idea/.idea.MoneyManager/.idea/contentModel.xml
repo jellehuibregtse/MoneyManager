@@ -11,10 +11,8 @@
         <e p="AppDbContext.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="Migrations" t="Include">
-          <e p="20200521091652_Initial_Migration.cs" t="Include" />
-          <e p="20200521091652_Initial_Migration.Designer.cs" t="Include" />
-          <e p="20200521092340_Update_Migration.cs" t="Include" />
-          <e p="20200521092340_Update_Migration.Designer.cs" t="Include" />
+          <e p="20200527130941_InitialMigration.cs" t="Include" />
+          <e p="20200527130941_InitialMigration.Designer.cs" t="Include" />
           <e p="AppDbContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="MoneyManager.DAL.csproj" t="IncludeRecursive" />
@@ -26,7 +24,6 @@
           </e>
         </e>
         <e p="SQLAccountRepository.cs" t="Include" />
-        <e p="SqlCategoryRepository.cs" t="Include" />
         <e p="SqlTransactionRepository.cs" t="Include" />
       </e>
       <e p="MoneyManager.Domain" t="IncludeRecursive">
@@ -35,7 +32,6 @@
           <e p="Account.cs" t="Include" />
           <e p="ApplicationUser.cs" t="Include" />
           <e p="Category.cs" t="Include" />
-          <e p="Entity.cs" t="Include" />
           <e p="Transaction.cs" t="Include" />
         </e>
         <e p="MoneyManager.Domain.csproj" t="IncludeRecursive" />
@@ -48,7 +44,6 @@
         </e>
         <e p="Repositories" t="Include">
           <e p="IAccountRepository.cs" t="Include" />
-          <e p="ICategoryRepository.cs" t="Include" />
           <e p="ITransactionRepository.cs" t="Include" />
         </e>
       </e>
@@ -61,6 +56,7 @@
           <e p="AccountController.cs" t="Include" />
           <e p="ErrorController.cs" t="Include" />
           <e p="HomeController.cs" t="Include" />
+          <e p="TransactionController.cs" t="Include" />
           <e p="UserController.cs" t="Include" />
         </e>
         <e p="libman.json" t="Include" />
@@ -85,6 +81,8 @@
           <e p="AccountIndexDto.cs" t="Include" />
           <e p="LoginDto.cs" t="Include" />
           <e p="RegisterDto.cs" t="Include" />
+          <e p="TransactionAddDto.cs" t="Include" />
+          <e p="TransactionDetailsDto.cs" t="Include" />
         </e>
         <e p="Views" t="Include">
           <e p="_ViewImports.cshtml" t="Include" />
@@ -106,6 +104,12 @@
             <e p="_LoginLayout.cshtml" t="Include" />
             <e p="Error.cshtml" t="Include" />
             <e p="NotFound.cshtml" t="Include" />
+          </e>
+          <e p="Transaction" t="Include">
+            <e p="Add.cshtml" t="Include" />
+            <e p="Details.cshtml" t="Include" />
+            <e p="Index.cshtml" t="Include" />
+            <e p="TransactionNotFound.cshtml" t="Include" />
           </e>
           <e p="User" t="Include">
             <e p="Login.cshtml" t="Include" />
