@@ -28,6 +28,7 @@
           </e>
         </e>
         <e p="SQLAccountRepository.cs" t="Include" />
+        <e p="SqlCategoryRepository.cs" t="Include" />
         <e p="SqlTransactionRepository.cs" t="Include" />
       </e>
       <e p="MoneyManager.Domain" t="IncludeRecursive">
@@ -48,6 +49,7 @@
         </e>
         <e p="Repositories" t="Include">
           <e p="IAccountRepository.cs" t="Include" />
+          <e p="ICategoryRepository.cs" t="Include" />
           <e p="ITransactionRepository.cs" t="Include" />
         </e>
       </e>
@@ -58,6 +60,7 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="Controllers" t="Include">
           <e p="AccountController.cs" t="Include" />
+          <e p="CategoryController.cs" t="Include" />
           <e p="ErrorController.cs" t="Include" />
           <e p="HomeController.cs" t="Include" />
           <e p="TransactionController.cs" t="Include" />
@@ -95,6 +98,9 @@
             <e p="Delete.cshtml" t="Include" />
             <e p="Details.cshtml" t="Include" />
             <e p="Edit.cshtml" t="Include" />
+            <e p="Index.cshtml" t="Include" />
+          </e>
+          <e p="Category" t="Include">
             <e p="Index.cshtml" t="Include" />
           </e>
           <e p="Home" t="Include">

@@ -1,1 +1,9 @@
-﻿
+﻿@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+a, button, li {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: #0b2e13;
+    text-decoration: none;
+}

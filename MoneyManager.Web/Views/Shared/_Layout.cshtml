@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 
     <environment include="Development">
-        <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+        <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet"/>
         <script src="~/lib/jquery/jquery.js"></script>
         <script src="~/lib/jquery-validate/jquery.validate.js"></script>
         <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
@@ -19,7 +19,6 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
               asp-suppress-fallback-integrity="true"/>
     </environment>
-
     <link href="~/css/site.css" rel="stylesheet"/>
     <title>@ViewBag.Title</title>
 </head>
@@ -37,17 +36,21 @@
         <ul class="navbar-nav mr-auto">
 
             <li class="nav-item first">
-                <a class="nav-link" asp-controller="home" asp-action="index">
+                <a class="nav-link" asp-controller="Home" asp-action="Index">
                     Dashboard
                 </a>
             </li>
 
             <li class="nav-item last">
-                <a class="nav-link" asp-controller="account" asp-action="index">
+                <a class="nav-link" asp-controller="Account" asp-action="Index">
                     Accounts
                 </a>
             </li>
-
+            <li class="nav-item last">
+                <a class="nav-link" asp-controller="Category" asp-action="Index">
+                    Categories
+                </a>
+            </li>
         </ul>
 
 
@@ -63,10 +66,10 @@
                             Settings
                         </a>
                         <form method="post" asp-controller="User" asp-action="Logout">
-                                                <button type="submit" class="nav-link btn btn-link py-0">
-                                                    Logout
-                                                </button>
-                                            </form>
+                            <button type="submit" class="nav-link btn btn-link py-0">
+                                Logout
+                            </button>
+                        </form>
                     </div>
                 </li>
             }

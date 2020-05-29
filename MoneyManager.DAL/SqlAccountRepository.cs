@@ -19,8 +19,9 @@ namespace MoneyManager.DAL
         {
             return _context.Accounts
                 .Include(account => account.Transactions)
-                .SingleOrDefault(account => account.Id == accountId
-                                            && account.ApplicationUser == applicationUser);
+                .SingleOrDefault(account =>
+                    account.Id == accountId && account.ApplicationUser == applicationUser
+                );
         }
 
         public IEnumerable<Account> GetAllAccounts(ApplicationUser applicationUser)

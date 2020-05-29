@@ -9,5 +9,6 @@ namespace MoneyManager.Models
 
         [StringLength(50, MinimumLength = 3)] public string Name { get; set; }
         public Transaction Transaction { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
     }
 }
