@@ -36,20 +36,25 @@ namespace MoneyManager.Web.Controllers
             return View("AccountNotFound", id);
         }
 
+        [HttpGet]
         public ViewResult Delete(int id)
         {
             var account = _accountRepository.GetAccount(id, GetCurrentUser());
 
-            if (account == null)
-            {
-                Response.StatusCode = 404;
-                return View("AccountNotFound", id);
-            }
+            if (account != null) return View(GetDto(account));
 
-            _accountRepository.Delete(id);
-            
-            var model = _accountRepository.GetAllAccounts(GetCurrentUser());
-            return View("Index", model);
+            Response.StatusCode = 404;
+            return View("AccountNotFound", id);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(AccountDto model)
+        {
+            if (!ModelState.IsValid) return View();
+
+            _accountRepository.Delete(model.AccountId);
+
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
