@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MoneyManager.Models;
 using MoneyManager.Repositories;
@@ -11,53 +10,41 @@ namespace MoneyManager.Web.Controllers
     public class TransactionController : Controller
     {
         private readonly ITransactionRepository _transactionRepository;
-        private readonly UserManager<ApplicationUser> _userManager;
-        
-        public TransactionController(ITransactionRepository transactionRepository, UserManager<ApplicationUser> userManager)
+
+        public TransactionController(ITransactionRepository transactionRepository)
         {
             _transactionRepository = transactionRepository;
-            _userManager = userManager;
         }
-        
-        public ViewResult Details(int? id)
-        {
-            var transaction = _transactionRepository.GetTransaction(id.Value);
 
-            if (transaction == null)
-            {
-                Response.StatusCode = 404;
-                return View("TransactionNotFound", id.Value);
-            }
-            
-            var transactionDetailsDto = new TransactionDetailsDto()
-            {
-                Transaction = transaction,
-                PageTitle = "Transaction Details"
-            };
-            
-            return View(transactionDetailsDto);
+        public ViewResult Details(int id)
+        {
+            var transaction = _transactionRepository.GetTransaction(id);
+
+            if (transaction != null) return View(GetDto(transaction, "Transaction Details"));
+
+            Response.StatusCode = 404;
+            return View("TransactionNotFound", id);
         }
-        
+
         [HttpGet]
         public ViewResult Add(int accountId)
         {
-            return View(new TransactionAddDto {AccountId = accountId});
+            return View(new TransactionDto {AccountId = accountId});
         }
 
         [HttpPost]
-        public IActionResult Add(TransactionAddDto model)
+        public IActionResult Add(TransactionDto model)
         {
             if (!ModelState.IsValid) return View();
 
-            var newTransaction = new Transaction()
+            var newTransaction = new Transaction
             {
                 Id = model.TransactionId,
                 Name = model.Name,
                 Amount = model.Amount,
-                AccountId = model.AccountId,
-                //Account = _userManager.GetUserAsync(User).Result.Accounts.First(account => account.Id == model.AccountId)
+                AccountId = model.AccountId
             };
-            
+
             _transactionRepository.Add(newTransaction);
             return RedirectToAction("Details", new {id = newTransaction.Id});
         }
@@ -66,18 +53,12 @@ namespace MoneyManager.Web.Controllers
         public ViewResult Edit(int id)
         {
             var transaction = _transactionRepository.GetTransaction(id);
-            var transactionEditDto = new TransactionEditDto
-            {
-                TransactionId = transaction.Id,
-                Name = transaction.Name,
-                Amount = transaction.Amount
-            };
 
-            return View(transactionEditDto);
+            return View(GetDto(transaction));
         }
 
         [HttpPost]
-        public IActionResult Edit(TransactionEditDto model)
+        public IActionResult Edit(TransactionDto model)
         {
             if (!ModelState.IsValid) return View();
 
@@ -95,31 +76,32 @@ namespace MoneyManager.Web.Controllers
         {
             var transaction = _transactionRepository.GetTransaction(id);
 
-            if (transaction == null)
-            {
-                Response.StatusCode = 404;
-                return View("TransactionNotFound", id);
-            }
-            
-            var transactionDeleteDto = new TransactionDeleteDto
-            {
-                TransactionId = transaction.Id,
-                Name = transaction.Name,
-                Amount = transaction.Amount,
-                AccountId = transaction.AccountId,
-            };
+            if (transaction != null) return View(GetDto(transaction));
 
-            return View(transactionDeleteDto);
+            Response.StatusCode = 404;
+            return View("TransactionNotFound", id);
         }
-        
+
         [HttpPost]
-        public IActionResult Delete(TransactionDeleteDto model)
+        public IActionResult Delete(TransactionDto model)
         {
             if (!ModelState.IsValid) return View();
 
             _transactionRepository.Delete(model.TransactionId);
 
             return RedirectToAction("Details", "Account", new {id = model.AccountId});
-        } 
+        }
+
+        private static TransactionDto GetDto(Transaction transaction, params string[] pageTitle)
+        {
+            return new TransactionDto
+            {
+                TransactionId = transaction.Id,
+                AccountId = transaction.AccountId,
+                Name = transaction.Name,
+                Amount = transaction.Amount,
+                PageTitle = pageTitle[0]
+            };
+        }
     }
 }

@@ -83,10 +83,7 @@
           <e p="AccountIndexDto.cs" t="Include" />
           <e p="LoginDto.cs" t="Include" />
           <e p="RegisterDto.cs" t="Include" />
-          <e p="TransactionAddDto.cs" t="Include" />
-          <e p="TransactionDeleteDto.cs" t="Include" />
-          <e p="TransactionDetailsDto.cs" t="Include" />
-          <e p="TransactionEditDto.cs" t="Include" />
+          <e p="TransactionDto.cs" t="Include" />
         </e>
         <e p="Views" t="Include">
           <e p="_ViewImports.cshtml" t="Include" />
