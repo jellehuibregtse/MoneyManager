@@ -16,11 +16,16 @@ namespace MoneyManager.Web.Controllers
             _transactionRepository = transactionRepository;
         }
 
+        public ViewResult Index()
+        {
+            return View("TransactionNotFound", null);
+        }
+
         public ViewResult Details(int id)
         {
             var transaction = _transactionRepository.GetTransaction(id);
 
-            if (transaction != null) return View(GetDto(transaction, "Transaction Details"));
+            if (transaction != null) return View(GetDto(transaction));
 
             Response.StatusCode = 404;
             return View("TransactionNotFound", id);
@@ -92,15 +97,14 @@ namespace MoneyManager.Web.Controllers
             return RedirectToAction("Details", "Account", new {id = model.AccountId});
         }
 
-        private static TransactionDto GetDto(Transaction transaction, params string[] pageTitle)
+        private static TransactionDto GetDto(Transaction transaction)
         {
             return new TransactionDto
             {
                 TransactionId = transaction.Id,
                 AccountId = transaction.AccountId,
                 Name = transaction.Name,
-                Amount = transaction.Amount,
-                PageTitle = pageTitle[0]
+                Amount = transaction.Amount
             };
         }
     }
