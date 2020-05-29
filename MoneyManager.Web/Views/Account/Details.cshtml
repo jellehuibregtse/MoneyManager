@@ -1,13 +1,13 @@
-@model AccountDetailsDto
+@model AccountDto
 
 @{
-    ViewBag.Title = @Model.PageTitle;
+    ViewBag.Title = "Account Details";
 }
 
 <h1>Transactions</h1>
 
 <div>
-    <a asp-controller="Transaction" asp-action="Add" asp-route-accountId="@Model.Account.Id" class="btn btn-outline-primary" type="button">
+    <a asp-controller="Transaction" asp-action="Add" asp-route-accountId="@Model.AccountId" class="btn btn-outline-primary" type="button">
         Add Transaction
     </a>
 </div>
@@ -42,7 +42,7 @@
         </tr>
         </thead>
         <tbody>
-        @foreach (var transaction in Model.Account.Transactions)
+        @foreach (var transaction in Model.Transactions)
         {
             <tr>
                 <td>@transaction.Name</td>

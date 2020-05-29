@@ -77,9 +77,7 @@
         </e>
         <e p="Startup.cs" t="Include" />
         <e p="ViewModels" t="Include">
-          <e p="AccountCreateDto.cs" t="Include" />
-          <e p="AccountDetailsDto.cs" t="Include" />
-          <e p="AccountEditDto.cs" t="Include" />
+          <e p="AccountDto.cs" t="Include" />
           <e p="AccountIndexDto.cs" t="Include" />
           <e p="LoginDto.cs" t="Include" />
           <e p="RegisterDto.cs" t="Include" />

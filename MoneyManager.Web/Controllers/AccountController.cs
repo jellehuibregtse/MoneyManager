@@ -14,7 +14,6 @@ namespace MoneyManager.Web.Controllers
         private readonly IAccountRepository _accountRepository;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        // Inject the interface using constructor injection
         public AccountController(IAccountRepository accountRepository, UserManager<ApplicationUser> userManager)
         {
             _accountRepository = accountRepository;
@@ -27,25 +26,14 @@ namespace MoneyManager.Web.Controllers
             return View(model);
         }
 
-        public ViewResult Details(int? id)
+        public ViewResult Details(int id)
         {
-            var account = _accountRepository.GetAccount(id.Value, GetCurrentUser());
+            var account = _accountRepository.GetAccount(id, GetCurrentUser());
 
-            if (account == null)
-            {
-                Response.StatusCode = 404;
-                return View("AccountNotFound", id.Value);
-            }
+            if (account != null) return View(GetDto(account));
             
-            var accountDetailsViewModel = new AccountDetailsDto()
-            {
-                Account = account,
-                PageTitle = "Account Details"
-            };
-
-            accountDetailsViewModel.Account.Transactions ??= new List<Transaction>();
-            
-            return View(accountDetailsViewModel);
+            Response.StatusCode = 404;
+            return View("AccountNotFound", id);
         }
 
         public ViewResult Delete(int id)
@@ -71,7 +59,7 @@ namespace MoneyManager.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(AccountCreateDto model)
+        public IActionResult Create(AccountDto model)
         {
             if (!ModelState.IsValid) return View();
 
@@ -90,19 +78,11 @@ namespace MoneyManager.Web.Controllers
         [HttpGet]
         public ViewResult Edit(int id)
         {
-            var account = _accountRepository.GetAccount(id, GetCurrentUser());
-            var accountEditDto = new AccountEditDto
-            {
-                AccountId = account.Id,
-                Name = account.Name,
-                Balance = account.Balance
-            };
-
-            return View(accountEditDto);
+            return View(GetDto(_accountRepository.GetAccount(id, GetCurrentUser())));
         }
 
         [HttpPost]
-        public IActionResult Edit(AccountEditDto model)
+        public IActionResult Edit(AccountDto model)
         {
             if (!ModelState.IsValid) return View();
 
@@ -117,6 +97,17 @@ namespace MoneyManager.Web.Controllers
         private ApplicationUser GetCurrentUser()
         {
             return _userManager.GetUserAsync(User).Result;
+        }
+
+        private static AccountDto GetDto(Account account)
+        {
+            return new AccountDto
+            {
+                AccountId = account.Id,
+                Balance = account.Balance,
+                Name = account.Name,
+                Transactions = account.Transactions ?? new List<Transaction>()
+            };
         }
     }
 }
