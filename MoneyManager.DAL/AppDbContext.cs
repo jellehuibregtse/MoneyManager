@@ -26,6 +26,11 @@ namespace MoneyManager.DAL
                 .WithOne(transaction => transaction.Account)
                 .HasForeignKey(transaction => transaction.AccountId)
                 .IsRequired();
+
+            modelBuilder.Entity<Category>()
+                .HasOne(category => category.Transaction)
+                .WithOne(transaction => transaction.Category)
+                .IsRequired();
         }    
     }
 }

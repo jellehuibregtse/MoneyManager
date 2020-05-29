@@ -27,5 +27,6 @@ namespace MoneyManager.Models
         public DateTime RegistrationDate { get; set; }
 
         public ICollection<Account> Accounts { get; set; }
+        public ICollection<Category> Categories { get; set; }
     }
 }
