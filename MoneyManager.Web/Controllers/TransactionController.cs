@@ -64,5 +64,33 @@ namespace MoneyManager.Web.Controllers
             _transactionRepository.Add(newTransaction);
             return RedirectToAction("Details", new {id = newTransaction.Id});
         }
+
+        [HttpGet]
+        public ViewResult Edit(int id)
+        {
+            var transaction = _transactionRepository.GetTransaction(id);
+            var transactionEditDto = new TransactionEditDto
+            {
+                TransactionId = transaction.Id,
+                Name = transaction.Name,
+                Amount = transaction.Amount
+            };
+
+            return View(transactionEditDto);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(TransactionEditDto model)
+        {
+            if (!ModelState.IsValid) return View();
+
+            var transaction = _transactionRepository.GetTransaction(model.TransactionId);
+            transaction.Name = model.Name;
+            transaction.Amount = model.Amount;
+
+            _transactionRepository.Update(transaction);
+
+            return RedirectToAction("Details", new {id = transaction.Id});
+        }
     }
 }

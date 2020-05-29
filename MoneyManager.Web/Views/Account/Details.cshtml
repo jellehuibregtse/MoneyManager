@@ -49,7 +49,7 @@
                 <td>&euro; @transaction.Amount</td>
                 <td>
                     <a asp-controller="Transaction" asp-action="Details" asp-route-id="@transaction.Id">Details</a>
-                    | Edit
+                    | <a asp-controller="Transaction" asp-action="Edit" asp-route-id="@transaction.Id">Edit</a>
                     | Delete
                 </td>
             </tr>

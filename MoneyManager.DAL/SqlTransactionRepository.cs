@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using MoneyManager.Models;
 using MoneyManager.Repositories;
 
@@ -12,10 +13,11 @@ namespace MoneyManager.DAL
         {
             _context = context;
         }
-        
+
         public Transaction GetTransaction(int transactionId)
         {
-            return _context.Transactions.Find(transactionId);
+            return _context.Transactions
+                .SingleOrDefault(transaction => transaction.Id == transactionId);
         }
 
         public Transaction Add(Transaction transaction)
