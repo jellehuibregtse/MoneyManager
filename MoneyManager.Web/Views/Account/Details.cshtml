@@ -1,7 +1,7 @@
 @model AccountDetailsDto
 
 @{
-    ViewBag.Title = "Edit account";
+    ViewBag.Title = @Model.PageTitle;
 }
 
 <h1>Transactions</h1>
@@ -38,6 +38,7 @@
         <tr>
             <th>Transaction</th>
             <th>Amount</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -45,7 +46,12 @@
         {
             <tr>
                 <td>@transaction.Name</td>
-                <td>€ @transaction.Amount</td>
+                <td>&euro; @transaction.Amount</td>
+                <td>
+                    <a asp-controller="Transaction" asp-action="Details" asp-route-id="@transaction.Id">Details</a>
+                    | Edit
+                    | Delete
+                </td>
             </tr>
         }
         </tbody>

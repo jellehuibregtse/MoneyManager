@@ -1,4 +1,5 @@
-﻿using MoneyManager.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using MoneyManager.Models;
 using MoneyManager.Repositories;
 
 namespace MoneyManager.DAL
@@ -24,7 +25,26 @@ namespace MoneyManager.DAL
 
             return transaction;
         }
-        
-        
+
+        public Transaction Update(Transaction updatedTransaction)
+        {
+            var transaction = _context.Transactions.Attach(updatedTransaction);
+            transaction.State = EntityState.Modified;
+            _context.SaveChanges();
+
+            return updatedTransaction;
+        }
+
+        public Transaction Delete(int transactionId)
+        {
+            var transaction = _context.Transactions.Find(transactionId);
+
+            if (transaction == null) return null;
+
+            _context.Transactions.Remove(transaction);
+            _context.SaveChanges();
+
+            return transaction;
+        }
     }
 }
