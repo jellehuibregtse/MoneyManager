@@ -25,7 +25,9 @@ namespace MoneyManager.DAL
 
         public IEnumerable<Account> GetAllAccounts(ApplicationUser applicationUser)
         {
-            return _context.Accounts.Where(account => account.ApplicationUser == applicationUser);
+            return _context.Accounts
+                .Include(account => account.Transactions)
+                .Where(account => account.ApplicationUser == applicationUser);
         }
 
         public Account Add(Account account)

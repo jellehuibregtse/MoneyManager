@@ -72,7 +72,7 @@ namespace MoneyManager.Web.Controllers
             {
                 Id = model.AccountId,
                 Name = model.Name,
-                Balance = model.Balance,
+                InitialBalance = model.Balance,
                 ApplicationUser = GetCurrentUser()
             };
 
@@ -93,7 +93,7 @@ namespace MoneyManager.Web.Controllers
 
             var account = _accountRepository.GetAccount(model.AccountId, GetCurrentUser());
             account.Name = model.Name;
-            account.Balance = model.Balance;
+            account.InitialBalance = model.Balance;
 
             _accountRepository.Update(account);
             return RedirectToAction("Index");
@@ -109,7 +109,7 @@ namespace MoneyManager.Web.Controllers
             return new AccountDto
             {
                 AccountId = account.Id,
-                Balance = account.Balance,
+                Balance = account.InitialBalance,
                 Name = account.Name,
                 Transactions = account.Transactions ?? new List<Transaction>()
             };
