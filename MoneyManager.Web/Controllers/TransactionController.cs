@@ -1,7 +1,4 @@
-﻿using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MoneyManager.Models;
@@ -92,5 +89,37 @@ namespace MoneyManager.Web.Controllers
 
             return RedirectToAction("Details", new {id = transaction.Id});
         }
+
+        [HttpGet]
+        public ViewResult Delete(int id)
+        {
+            var transaction = _transactionRepository.GetTransaction(id);
+
+            if (transaction == null)
+            {
+                Response.StatusCode = 404;
+                return View("TransactionNotFound", id);
+            }
+            
+            var transactionDeleteDto = new TransactionDeleteDto
+            {
+                TransactionId = transaction.Id,
+                Name = transaction.Name,
+                Amount = transaction.Amount,
+                AccountId = transaction.AccountId,
+            };
+
+            return View(transactionDeleteDto);
+        }
+        
+        [HttpPost]
+        public IActionResult Delete(TransactionDeleteDto model)
+        {
+            if (!ModelState.IsValid) return View();
+
+            _transactionRepository.Delete(model.TransactionId);
+
+            return RedirectToAction("Details", "Account", new {id = model.AccountId});
+        } 
     }
 }

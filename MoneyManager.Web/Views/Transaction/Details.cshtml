@@ -26,6 +26,6 @@
 </div>
 <div>
     <a asp-controller="Transaction" asp-action="Edit" asp-route-id="@Model.Transaction.Id">Edit</a> |
-    @* Delete *@
+    <a asp-controller="Transaction" asp-action="Delete" asp-route-id="@Model.Transaction.Id">Delete</a>
     <a asp-controller="Account" asp-action="Details" asp-route-id="@Model.Transaction.AccountId">Return to overview</a>
 </div>

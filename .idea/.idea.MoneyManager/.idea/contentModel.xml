@@ -84,6 +84,7 @@
           <e p="LoginDto.cs" t="Include" />
           <e p="RegisterDto.cs" t="Include" />
           <e p="TransactionAddDto.cs" t="Include" />
+          <e p="TransactionDeleteDto.cs" t="Include" />
           <e p="TransactionDetailsDto.cs" t="Include" />
           <e p="TransactionEditDto.cs" t="Include" />
         </e>
@@ -110,6 +111,7 @@
           </e>
           <e p="Transaction" t="Include">
             <e p="Add.cshtml" t="Include" />
+            <e p="Delete.cshtml" t="Include" />
             <e p="Details.cshtml" t="Include" />
             <e p="Edit.cshtml" t="Include" />
             <e p="Index.cshtml" t="Include" />

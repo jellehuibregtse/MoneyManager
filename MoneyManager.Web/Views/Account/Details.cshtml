@@ -50,7 +50,7 @@
                 <td>
                     <a asp-controller="Transaction" asp-action="Details" asp-route-id="@transaction.Id">Details</a>
                     | <a asp-controller="Transaction" asp-action="Edit" asp-route-id="@transaction.Id">Edit</a>
-                    | Delete
+                    | <a asp-controller="Transaction" asp-action="Delete" asp-route-id="@transaction.Id">Delete</a>
                 </td>
             </tr>
         }
