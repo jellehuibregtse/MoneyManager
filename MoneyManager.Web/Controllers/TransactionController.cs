@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System.Linq;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using MoneyManager.Models;
 using MoneyManager.Repositories;
 using MoneyManager.Web.ViewModels;
@@ -10,10 +13,15 @@ namespace MoneyManager.Web.Controllers
     public class TransactionController : Controller
     {
         private readonly ITransactionRepository _transactionRepository;
+        private readonly ICategoryRepository _categoryRepository;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public TransactionController(ITransactionRepository transactionRepository)
+        public TransactionController(ITransactionRepository transactionRepository,
+            ICategoryRepository categoryRepository, UserManager<ApplicationUser> userManager)
         {
             _transactionRepository = transactionRepository;
+            _categoryRepository = categoryRepository;
+            _userManager = userManager;
         }
 
         public ViewResult Index()
@@ -34,7 +42,12 @@ namespace MoneyManager.Web.Controllers
         [HttpGet]
         public ViewResult Add(int accountId)
         {
-            return View(new TransactionDto {AccountId = accountId});
+            return View(new TransactionDto
+            {
+                AccountId = accountId,
+                Categories =  new SelectList(
+                    _categoryRepository.GetAllCategories(_userManager.GetUserAsync(User).Result).ToList(), "Id", "Name")
+            });
         }
 
         [HttpPost]
@@ -47,7 +60,8 @@ namespace MoneyManager.Web.Controllers
                 Id = model.TransactionId,
                 Name = model.Name,
                 Amount = model.Amount,
-                AccountId = model.AccountId
+                AccountId = model.AccountId,
+                Category = model.Category
             };
 
             _transactionRepository.Add(newTransaction);
@@ -97,14 +111,17 @@ namespace MoneyManager.Web.Controllers
             return RedirectToAction("Details", "Account", new {id = model.AccountId});
         }
 
-        private static TransactionDto GetDto(Transaction transaction)
+        private TransactionDto GetDto(Transaction transaction)
         {
             return new TransactionDto
             {
                 TransactionId = transaction.Id,
                 AccountId = transaction.AccountId,
                 Name = transaction.Name,
-                Amount = transaction.Amount
+                Amount = transaction.Amount,
+                Categories =
+                    new SelectList(
+                        _categoryRepository.GetAllCategories(_userManager.GetUserAsync(User).Result).ToList(), "Id", "Name")
             };
         }
     }
