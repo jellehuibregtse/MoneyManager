@@ -50,7 +50,14 @@ namespace MoneyManager.DAL
 
         public Category Delete(int categoryId)
         {
-            throw new System.NotImplementedException();
+            var category = _context.Categories.Find(categoryId);
+
+            if (category == null) return null;
+
+            _context.Categories.Remove(category);
+            _context.SaveChanges();
+
+            return category;
         }
     }
 }

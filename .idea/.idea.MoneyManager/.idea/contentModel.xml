@@ -17,6 +17,8 @@
           <e p="20200527135533_Update_Ids.Designer.cs" t="Include" />
           <e p="20200529151515_Updated_AccountModel.cs" t="Include" />
           <e p="20200529151515_Updated_AccountModel.Designer.cs" t="Include" />
+          <e p="20200601130306_Updated_CategoryModel.cs" t="Include" />
+          <e p="20200601130306_Updated_CategoryModel.Designer.cs" t="Include" />
           <e p="AppDbContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="MoneyManager.DAL.csproj" t="IncludeRecursive" />
@@ -84,6 +86,7 @@
         <e p="ViewModels" t="Include">
           <e p="AccountDto.cs" t="Include" />
           <e p="AccountIndexDto.cs" t="Include" />
+          <e p="CategoryDto.cs" t="Include" />
           <e p="LoginDto.cs" t="Include" />
           <e p="RegisterDto.cs" t="Include" />
           <e p="TransactionDto.cs" t="Include" />
@@ -92,7 +95,6 @@
           <e p="_ViewImports.cshtml" t="Include" />
           <e p="_ViewStart.cshtml" t="Include" />
           <e p="Account" t="Include">
-            <e p="_ViewStart.cshtml" t="Include" />
             <e p="AccountNotFound.cshtml" t="Include" />
             <e p="Create.cshtml" t="Include" />
             <e p="Delete.cshtml" t="Include" />
@@ -101,6 +103,11 @@
             <e p="Index.cshtml" t="Include" />
           </e>
           <e p="Category" t="Include">
+            <e p="CategoryNotFound.cshtml" t="Include" />
+            <e p="Create.cshtml" t="Include" />
+            <e p="Delete.cshtml" t="Include" />
+            <e p="Details.cshtml" t="Include" />
+            <e p="Edit.cshtml" t="Include" />
             <e p="Index.cshtml" t="Include" />
           </e>
           <e p="Home" t="Include">
