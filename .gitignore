@@ -33,4 +33,4 @@ Thumbs.db
 Desktop.ini
 .DS_Store
 
-**/MoneyManager.Web/wwwroot/lib
+/MoneyManager.Web/wwwroot/lib/
