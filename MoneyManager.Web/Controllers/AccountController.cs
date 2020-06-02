@@ -28,23 +28,29 @@ namespace MoneyManager.Web.Controllers
             return View(model);
         }
 
-        public ViewResult Details(int id, string sort)
+        public ViewResult Details(int id, string sort = "all")
         {
             var account = _accountRepository.GetAccount(id, GetCurrentUser());
 
+            if (account == null)
+            {
+                Response.StatusCode = 404;
+                return View("AccountNotFound", id);
+            }
+
             if (sort == "month")
             {
-                account.Transactions = account.Transactions.Where(transaction => 
-                    (((transaction.TransactionDate.Year - DateTime.Now.Year) * 12) + transaction.TransactionDate.Month - DateTime.Now.Month)
+                account.Transactions = account.Transactions.Where(transaction =>
+                    (((transaction.TransactionDate.Year - DateTime.Now.Year) * 12) + transaction.TransactionDate.Month -
+                     DateTime.Now.Month)
                     < 1).ToList();
             }
 
             ViewData["sort"] = sort;
 
-            if (account != null) return View(GetDto(account));
+            account.Transactions.ToList().Sort((x, y) => DateTime.Compare(x.TransactionDate, y.TransactionDate));
 
-            Response.StatusCode = 404;
-            return View("AccountNotFound", id);
+            return View(GetDto(account));
         }
 
         [HttpGet]
@@ -83,12 +89,12 @@ namespace MoneyManager.Web.Controllers
             {
                 Id = model.AccountId,
                 Name = model.Name,
-                InitialBalance = model.Balance,
+                InitialBalance = model.InitialBalance,
                 ApplicationUser = GetCurrentUser()
             };
 
             _accountRepository.Add(newAccount);
-            return RedirectToAction("Details", new {id = newAccount.Id});
+            return RedirectToAction("Details", new {id = newAccount.Id, sort = "all"});
         }
 
         [HttpGet]
@@ -104,7 +110,7 @@ namespace MoneyManager.Web.Controllers
 
             var account = _accountRepository.GetAccount(model.AccountId, GetCurrentUser());
             account.Name = model.Name;
-            account.InitialBalance = model.Balance;
+            account.InitialBalance = model.InitialBalance;
 
             _accountRepository.Update(account);
             return RedirectToAction("Index");
@@ -120,7 +126,7 @@ namespace MoneyManager.Web.Controllers
             return new AccountDto
             {
                 AccountId = account.Id,
-                Balance = account.InitialBalance,
+                InitialBalance = account.InitialBalance,
                 Name = account.Name,
                 Transactions = account.Transactions ?? new List<Transaction>()
             };

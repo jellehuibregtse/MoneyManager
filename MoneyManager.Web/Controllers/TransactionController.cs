@@ -86,6 +86,7 @@ namespace MoneyManager.Web.Controllers
             var transaction = _transactionRepository.GetTransaction(model.TransactionId);
             transaction.Name = model.Name;
             transaction.Amount = model.Amount;
+            transaction.Category = model.Category;
 
             _transactionRepository.Update(transaction);
 
