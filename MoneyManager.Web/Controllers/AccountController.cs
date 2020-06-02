@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -26,12 +28,21 @@ namespace MoneyManager.Web.Controllers
             return View(model);
         }
 
-        public ViewResult Details(int id)
+        public ViewResult Details(int id, string sort)
         {
             var account = _accountRepository.GetAccount(id, GetCurrentUser());
 
+            if (sort == "month")
+            {
+                account.Transactions = account.Transactions.Where(transaction => 
+                    (((transaction.TransactionDate.Year - DateTime.Now.Year) * 12) + transaction.TransactionDate.Month - DateTime.Now.Month)
+                    < 1).ToList();
+            }
+
+            ViewData["sort"] = sort;
+
             if (account != null) return View(GetDto(account));
-            
+
             Response.StatusCode = 404;
             return View("AccountNotFound", id);
         }

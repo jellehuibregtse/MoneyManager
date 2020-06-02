@@ -5,7 +5,7 @@
 }
 
 <h1>Add a transaction</h1>
-
+<hr/>
 <form asp-controller="Transaction" asp-action="Edit" method="post" class="mt-3">
     <div class="form-group row">
         <input hidden asp-for="TransactionId"/>
@@ -30,9 +30,10 @@
     <div class="form-group row">
         <label asp-for="Category" class="col-sm-2 col-form-label"></label>
         <div class="col-sm-10">
-            <div class="input-group">
+            <div class="dropdown">
                 <select asp-for="Category"
-                        asp-items="@Model.Categories">
+                        asp-items="@Model.Categories"
+                        class="btn btn-primary dropdown-toggle">
                     <option>Please select one</option>
                 </select>
                 <span asp-validation-for="Amount" class="text-danger"></span>

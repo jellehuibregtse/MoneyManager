@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -61,7 +62,8 @@ namespace MoneyManager.Web.Controllers
                 Name = model.Name,
                 Amount = model.Amount,
                 AccountId = model.AccountId,
-                Category = model.Category
+                Category = model.Category,
+                TransactionDate = DateTime.Now
             };
 
             _transactionRepository.Add(newTransaction);

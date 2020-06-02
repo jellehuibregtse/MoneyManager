@@ -6,38 +6,42 @@
 
 <h1>Transactions</h1>
 
-<div>
+<div class="btn-group my-4">
     <a asp-controller="Transaction" asp-action="Add" asp-route-accountId="@Model.AccountId" class="btn btn-outline-primary" type="button">
         Add Transaction
     </a>
 </div>
 
+<hr/>
+
 <div>
     <ul class="nav nav-pills nav-fill">
         <li class="nav-item">
-            <a class="nav-link active">
+            <a asp-controller="Account" asp-action="Details" asp-route-id="@Model.AccountId" asp-route-sort="all" class="nav-link @(ViewData["sort"].ToString() == "all" || string.IsNullOrEmpty(ViewData["sort"].ToString()) ? "active" : "")">
                 All Transactions
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link">
+            <a asp-controller="Account" asp-action="Details" asp-route-id="@Model.AccountId" asp-route-sort="month" class="nav-link @(ViewData["sort"].ToString() == "month" ? "active" : "")">
                 Last month
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link">
+            <a asp-controller="Account" asp-action="Details" asp-route-id="@Model.AccountId" asp-route-sort="week" class="nav-link @(ViewData["sort"].ToString() == "week" ? "active" : "")">
                 Last week
             </a>
         </li>
-        
+
     </ul>
 </div>
 <div class="table-responsive">
     <table class="table">
         <thead>
         <tr>
+            <th>Date</th>
             <th>Transaction</th>
             <th>Amount</th>
+            <th>Category</th>
             <th>Actions</th>
         </tr>
         </thead>
@@ -45,8 +49,17 @@
         @foreach (var transaction in Model.Transactions)
         {
             <tr>
+                <td>@transaction.TransactionDate.ToString()</td>
                 <td>@transaction.Name</td>
                 <td>&euro; @transaction.Amount</td>
+                @if (transaction.Category != null && String.IsNullOrEmpty(transaction.Category.Name) == false)
+                {
+                    <td>@transaction.Category.Name</td>
+                }
+                else
+                {
+                    <td></td>
+                }
                 <td>
                     <a asp-controller="Transaction" asp-action="Details" asp-route-id="@transaction.Id">Details</a>
                     | <a asp-controller="Transaction" asp-action="Edit" asp-route-id="@transaction.Id">Edit</a>

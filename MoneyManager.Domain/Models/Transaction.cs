@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -12,7 +13,11 @@ namespace MoneyManager.Models
         [Column(TypeName = "decimal(18,2)")]
         [DataType(DataType.Currency)]
         public decimal Amount { get; set; }
-
+        
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime TransactionDate { get; set; }
+        
         public Category Category { get; set; }
         public Account Account { get; set; }
     }

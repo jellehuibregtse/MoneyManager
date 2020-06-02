@@ -19,6 +19,8 @@
           <e p="20200529151515_Updated_AccountModel.Designer.cs" t="Include" />
           <e p="20200601130306_Updated_CategoryModel.cs" t="Include" />
           <e p="20200601130306_Updated_CategoryModel.Designer.cs" t="Include" />
+          <e p="20200602084106_Updated_TransactionModel.cs" t="Include" />
+          <e p="20200602084106_Updated_TransactionModel.Designer.cs" t="Include" />
           <e p="AppDbContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="MoneyManager.DAL.csproj" t="IncludeRecursive" />
