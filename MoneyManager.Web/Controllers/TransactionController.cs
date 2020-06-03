@@ -46,8 +46,7 @@ namespace MoneyManager.Web.Controllers
             return View(new TransactionDto
             {
                 AccountId = accountId,
-                Categories =  new SelectList(
-                    _categoryRepository.GetAllCategories(_userManager.GetUserAsync(User).Result).ToList(), "Id", "Name")
+                Categories =  new SelectList(_categoryRepository.GetAllCategories(_userManager.GetUserAsync(User).Result).ToList(), "Id", "Name")
             });
         }
 

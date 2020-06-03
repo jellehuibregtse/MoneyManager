@@ -52,14 +52,14 @@
                 <td>@transaction.TransactionDate.ToString()</td>
                 <td>@transaction.Name</td>
                 <td>&euro; @transaction.Amount</td>
-                @if (transaction.Category != null && String.IsNullOrEmpty(transaction.Category.Name) == false)
-                {
-                    <td>@transaction.Category.Name</td>
-                }
-                else
-                {
-                    <td></td>
-                }
+@*                 @if (transaction.Category != null && String.IsNullOrEmpty(transaction.Category.Name) == false) *@
+@*                 { *@
+                     <td>@transaction.Category.Name</td>
+@*                 } *@
+@*                 else *@
+@*                 { *@
+@*                     <td></td> *@
+@*                 } *@
                 <td>
                     <a asp-controller="Transaction" asp-action="Details" asp-route-id="@transaction.Id">Details</a>
                     | <a asp-controller="Transaction" asp-action="Edit" asp-route-id="@transaction.Id">Edit</a>
