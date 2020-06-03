@@ -17,7 +17,8 @@ namespace MoneyManager.DAL
 
         public Category GetCategory(int categoryId, ApplicationUser applicationUser)
         {
-            return _context.Categories.Include(category => category.Transaction)
+            return _context.Categories
+                .Include(category => category.Transactions)
                 .Include(category => category.ApplicationUser)
                 .SingleOrDefault(category =>
                 category.Id == categoryId && category.ApplicationUser == applicationUser
@@ -26,7 +27,8 @@ namespace MoneyManager.DAL
 
         public IEnumerable<Category> GetAllCategories(ApplicationUser applicationUser)
         {
-            return _context.Categories.Include(category => category.Transaction)
+            return _context.Categories
+                .Include(category => category.Transactions)
                 .Include(category => category.ApplicationUser)
                 .Where(category => category.ApplicationUser == applicationUser);
         }

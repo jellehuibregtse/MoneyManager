@@ -28,7 +28,7 @@ namespace MoneyManager.DAL
                 .IsRequired();
 
             modelBuilder.Entity<Category>()
-                .HasOne(category => category.Transaction)
+                .HasMany(category => category.Transactions)
                 .WithOne(transaction => transaction.Category);
         }    
     }

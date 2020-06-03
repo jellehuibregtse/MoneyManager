@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MoneyManager.DAL.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class Initial_Migration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -74,16 +74,15 @@ namespace MoneyManager.DAL.Migrations
                 name: "Account",
                 columns: table => new
                 {
-                    AccountId = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TransactionId = table.Column<int>(nullable: false),
                     Name = table.Column<string>(maxLength: 50, nullable: true),
-                    Balance = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    InitialBalance = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     ApplicationUserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Account", x => x.AccountId);
+                    table.PrimaryKey("PK_Account", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Account_AspNetUsers_ApplicationUserId",
                         column: x => x.ApplicationUserId,
@@ -178,43 +177,58 @@ namespace MoneyManager.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Transaction",
+                name: "Category",
                 columns: table => new
                 {
-                    TransactionId = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    AccountId = table.Column<int>(nullable: false),
                     Name = table.Column<string>(maxLength: 50, nullable: true),
-                    Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    ApplicationUserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Transaction", x => x.TransactionId);
+                    table.PrimaryKey("PK_Category", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Category_AspNetUsers_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Transaction",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AccountId = table.Column<int>(nullable: false),
+                    CategoryId = table.Column<int>(nullable: false),
+                    Name = table.Column<string>(maxLength: 50, nullable: true),
+                    Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    TransactionDate = table.Column<DateTime>(nullable: false),
+                    ApplicationUserId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Transaction", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Transaction_Account_AccountId",
                         column: x => x.AccountId,
                         principalTable: "Account",
-                        principalColumn: "AccountId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Category",
-                columns: table => new
-                {
-                    CategoryId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TransactionId = table.Column<int>(nullable: false),
-                    Name = table.Column<string>(maxLength: 50, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Category", x => x.CategoryId);
                     table.ForeignKey(
-                        name: "FK_Category_Transaction_TransactionId",
-                        column: x => x.TransactionId,
-                        principalTable: "Transaction",
-                        principalColumn: "TransactionId",
+                        name: "FK_Transaction_AspNetUsers_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Transaction_Category_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Category",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -263,15 +277,24 @@ namespace MoneyManager.DAL.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Category_TransactionId",
+                name: "IX_Category_ApplicationUserId",
                 table: "Category",
-                column: "TransactionId",
-                unique: true);
+                column: "ApplicationUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Transaction_AccountId",
                 table: "Transaction",
                 column: "AccountId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Transaction_ApplicationUserId",
+                table: "Transaction",
+                column: "ApplicationUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Transaction_CategoryId",
+                table: "Transaction",
+                column: "CategoryId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -292,16 +315,16 @@ namespace MoneyManager.DAL.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Category");
+                name: "Transaction");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Transaction");
+                name: "Account");
 
             migrationBuilder.DropTable(
-                name: "Account");
+                name: "Category");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

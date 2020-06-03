@@ -10,8 +10,8 @@ using MoneyManager.DAL;
 namespace MoneyManager.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200527135533_Update_Ids")]
-    partial class Update_Ids
+    [Migration("20200603082449_Updated_User_Model")]
+    partial class Updated_User_Model
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -162,15 +162,12 @@ namespace MoneyManager.DAL.Migrations
                     b.Property<string>("ApplicationUserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<decimal>("Balance")
+                    b.Property<decimal>("InitialBalance")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
-
-                    b.Property<int>("TransactionId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -265,17 +262,16 @@ namespace MoneyManager.DAL.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
-                    b.Property<int>("TransactionId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("TransactionId")
-                        .IsUnique();
+                    b.HasIndex("ApplicationUserId");
 
                     b.ToTable("Category");
                 });
@@ -293,13 +289,26 @@ namespace MoneyManager.DAL.Migrations
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
+                    b.Property<DateTime>("TransactionDate")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AccountId");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Transaction");
                 });
@@ -364,11 +373,9 @@ namespace MoneyManager.DAL.Migrations
 
             modelBuilder.Entity("MoneyManager.Models.Category", b =>
                 {
-                    b.HasOne("MoneyManager.Models.Transaction", "Transaction")
-                        .WithOne("Category")
-                        .HasForeignKey("MoneyManager.Models.Category", "TransactionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("MoneyManager.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany("Categories")
+                        .HasForeignKey("ApplicationUserId");
                 });
 
             modelBuilder.Entity("MoneyManager.Models.Transaction", b =>
@@ -376,6 +383,16 @@ namespace MoneyManager.DAL.Migrations
                     b.HasOne("MoneyManager.Models.Account", "Account")
                         .WithMany("Transactions")
                         .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MoneyManager.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany("Transactions")
+                        .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("MoneyManager.Models.Category", "Category")
+                        .WithMany("Transactions")
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

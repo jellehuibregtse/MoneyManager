@@ -11,16 +11,8 @@
         <e p="AppDbContext.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="Migrations" t="Include">
-          <e p="20200527130941_InitialMigration.cs" t="Include" />
-          <e p="20200527130941_InitialMigration.Designer.cs" t="Include" />
-          <e p="20200527135533_Update_Ids.cs" t="Include" />
-          <e p="20200527135533_Update_Ids.Designer.cs" t="Include" />
-          <e p="20200529151515_Updated_AccountModel.cs" t="Include" />
-          <e p="20200529151515_Updated_AccountModel.Designer.cs" t="Include" />
-          <e p="20200601130306_Updated_CategoryModel.cs" t="Include" />
-          <e p="20200601130306_Updated_CategoryModel.Designer.cs" t="Include" />
-          <e p="20200602084106_Updated_TransactionModel.cs" t="Include" />
-          <e p="20200602084106_Updated_TransactionModel.Designer.cs" t="Include" />
+          <e p="20200603080638_Initial_Migration.cs" t="Include" />
+          <e p="20200603080638_Initial_Migration.Designer.cs" t="Include" />
           <e p="AppDbContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="MoneyManager.DAL.csproj" t="IncludeRecursive" />

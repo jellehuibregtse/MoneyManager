@@ -2,7 +2,7 @@
 
 namespace MoneyManager.DAL.Migrations
 {
-    public partial class Updated_AccountModel : Migration
+    public partial class Updated_User_Model : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using MoneyManager.Models;
 using MoneyManager.Repositories;
@@ -14,10 +15,21 @@ namespace MoneyManager.DAL
             _context = context;
         }
 
-        public Transaction GetTransaction(int transactionId)
+        public Transaction GetTransaction(int transactionId, ApplicationUser applicationUser)
         {
             return _context.Transactions
+                .Include(transaction => transaction.Category)
+                .Include(transaction => transaction.Account)
                 .SingleOrDefault(transaction => transaction.Id == transactionId);
+        }
+
+        public IEnumerable<Transaction> GetAllTransactions(ApplicationUser applicationUser)
+        {
+            return _context.Transactions
+                .Include(transaction => transaction.Category)
+                .Include(transaction => transaction.Account)
+                .Include(transaction => transaction.ApplicationUser)
+                .Where(transaction => transaction.ApplicationUser == applicationUser);
         }
 
         public Transaction Add(Transaction transaction)

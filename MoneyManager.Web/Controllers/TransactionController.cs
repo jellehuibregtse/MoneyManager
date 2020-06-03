@@ -32,7 +32,7 @@ namespace MoneyManager.Web.Controllers
 
         public ViewResult Details(int id)
         {
-            var transaction = _transactionRepository.GetTransaction(id);
+            var transaction = _transactionRepository.GetTransaction(id, GetCurrentUser());
 
             if (transaction != null) return View(GetDto(transaction));
 
@@ -62,7 +62,7 @@ namespace MoneyManager.Web.Controllers
                 Name = model.Name,
                 Amount = model.Amount,
                 AccountId = model.AccountId,
-                Category = model.Category,
+                CategoryId = model.CategoryId,
                 TransactionDate = DateTime.Now
             };
 
@@ -73,7 +73,7 @@ namespace MoneyManager.Web.Controllers
         [HttpGet]
         public ViewResult Edit(int id)
         {
-            var transaction = _transactionRepository.GetTransaction(id);
+            var transaction = _transactionRepository.GetTransaction(id, GetCurrentUser());
 
             return View(GetDto(transaction));
         }
@@ -83,10 +83,10 @@ namespace MoneyManager.Web.Controllers
         {
             if (!ModelState.IsValid) return View();
 
-            var transaction = _transactionRepository.GetTransaction(model.TransactionId);
+            var transaction = _transactionRepository.GetTransaction(model.TransactionId, GetCurrentUser());
             transaction.Name = model.Name;
             transaction.Amount = model.Amount;
-            transaction.Category = model.Category;
+            transaction.CategoryId = model.CategoryId;
 
             _transactionRepository.Update(transaction);
 
@@ -96,7 +96,7 @@ namespace MoneyManager.Web.Controllers
         [HttpGet]
         public ViewResult Delete(int id)
         {
-            var transaction = _transactionRepository.GetTransaction(id);
+            var transaction = _transactionRepository.GetTransaction(id, GetCurrentUser());
 
             if (transaction != null) return View(GetDto(transaction));
 
@@ -112,6 +112,11 @@ namespace MoneyManager.Web.Controllers
             _transactionRepository.Delete(model.TransactionId);
 
             return RedirectToAction("Details", "Account", new {id = model.AccountId});
+        }
+        
+        private ApplicationUser GetCurrentUser()
+        {
+            return _userManager.GetUserAsync(User).Result;
         }
 
         private TransactionDto GetDto(Transaction transaction)

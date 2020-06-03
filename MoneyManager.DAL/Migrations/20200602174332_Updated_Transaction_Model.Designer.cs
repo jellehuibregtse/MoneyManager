@@ -10,8 +10,8 @@ using MoneyManager.DAL;
 namespace MoneyManager.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200601130306_Updated_CategoryModel")]
-    partial class Updated_CategoryModel
+    [Migration("20200602174332_Updated_Transaction_Model")]
+    partial class Updated_Transaction_Model
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -269,16 +269,9 @@ namespace MoneyManager.DAL.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
-                    b.Property<int?>("TransactionId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ApplicationUserId");
-
-                    b.HasIndex("TransactionId")
-                        .IsUnique()
-                        .HasFilter("[TransactionId] IS NOT NULL");
 
                     b.ToTable("Category");
                 });
@@ -296,13 +289,26 @@ namespace MoneyManager.DAL.Migrations
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int?>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
+                    b.Property<DateTime>("TransactionDate")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AccountId");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Transaction");
                 });
@@ -370,10 +376,6 @@ namespace MoneyManager.DAL.Migrations
                     b.HasOne("MoneyManager.Models.ApplicationUser", "ApplicationUser")
                         .WithMany("Categories")
                         .HasForeignKey("ApplicationUserId");
-
-                    b.HasOne("MoneyManager.Models.Transaction", "Transaction")
-                        .WithOne("Category")
-                        .HasForeignKey("MoneyManager.Models.Category", "TransactionId");
                 });
 
             modelBuilder.Entity("MoneyManager.Models.Transaction", b =>
@@ -383,6 +385,14 @@ namespace MoneyManager.DAL.Migrations
                         .HasForeignKey("AccountId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("MoneyManager.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany("Transactions")
+                        .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("MoneyManager.Models.Category", "Category")
+                        .WithMany("Transactions")
+                        .HasForeignKey("CategoryId");
                 });
 #pragma warning restore 612, 618
         }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MoneyManager.DAL;
 
 namespace MoneyManager.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200603080638_Initial_Migration")]
+    partial class Initial_Migration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -385,7 +387,7 @@ namespace MoneyManager.DAL.Migrations
                         .IsRequired();
 
                     b.HasOne("MoneyManager.Models.ApplicationUser", "ApplicationUser")
-                        .WithMany("Transactions")
+                        .WithMany()
                         .HasForeignKey("ApplicationUserId");
 
                     b.HasOne("MoneyManager.Models.Category", "Category")
