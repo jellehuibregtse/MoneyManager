@@ -1,3 +1,4 @@
+using System.Globalization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -54,6 +55,11 @@ namespace MoneyManager.Web
                 app.UseExceptionHandler("/Error");
                 app.UseStatusCodePagesWithRedirects("/Error/{0}");
             }
+
+            var cultureInfo = new CultureInfo("en-US") {NumberFormat = {CurrencySymbol = "€"}};
+
+            CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+            CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
 
             app.UseStaticFiles();
             app.UseAuthentication();

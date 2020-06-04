@@ -46,7 +46,10 @@ namespace MoneyManager.Web.Controllers
             return View(new TransactionDto
             {
                 AccountId = accountId,
-                Categories =  new SelectList(_categoryRepository.GetAllCategories(_userManager.GetUserAsync(User).Result).ToList(), "Id", "Name")
+                Categories =
+                    new SelectList(
+                        _categoryRepository.GetAllCategories(_userManager.GetUserAsync(User).Result).ToList(), "Id",
+                        "Name")
             });
         }
 
@@ -85,7 +88,7 @@ namespace MoneyManager.Web.Controllers
             var transaction = _transactionRepository.GetTransaction(model.TransactionId, GetCurrentUser());
             transaction.Name = model.Name;
             transaction.Amount = model.Amount;
-            transaction.CategoryId = model.CategoryId;
+            transaction.CategoryId = model.CategoryId == 0 ? null : model.CategoryId;
 
             _transactionRepository.Update(transaction);
 
@@ -112,7 +115,7 @@ namespace MoneyManager.Web.Controllers
 
             return RedirectToAction("Details", "Account", new {id = model.AccountId});
         }
-        
+
         private ApplicationUser GetCurrentUser()
         {
             return _userManager.GetUserAsync(User).Result;
@@ -128,7 +131,8 @@ namespace MoneyManager.Web.Controllers
                 Amount = transaction.Amount,
                 Categories =
                     new SelectList(
-                        _categoryRepository.GetAllCategories(_userManager.GetUserAsync(User).Result).ToList(), "Id", "Name")
+                        _categoryRepository.GetAllCategories(_userManager.GetUserAsync(User).Result).ToList(), "Id",
+                        "Name")
             };
         }
     }

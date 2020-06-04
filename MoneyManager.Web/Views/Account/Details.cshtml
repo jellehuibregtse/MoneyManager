@@ -23,12 +23,12 @@
         </li>
         <li class="nav-item">
             <a asp-controller="Account" asp-action="Details" asp-route-id="@Model.AccountId" asp-route-sort="month" class="nav-link @(ViewData["sort"].ToString() == "month" ? "active" : "")">
-                Last month
+                This month
             </a>
         </li>
         <li class="nav-item">
             <a asp-controller="Account" asp-action="Details" asp-route-id="@Model.AccountId" asp-route-sort="week" class="nav-link @(ViewData["sort"].ToString() == "week" ? "active" : "")">
-                Last week
+                This week
             </a>
         </li>
 
@@ -52,14 +52,14 @@
                 <td>@transaction.TransactionDate.ToString()</td>
                 <td>@transaction.Name</td>
                 <td>&euro; @transaction.Amount</td>
-@*                 @if (transaction.Category != null && String.IsNullOrEmpty(transaction.Category.Name) == false) *@
-@*                 { *@
-                     <td>@transaction.Category.Name</td>
-@*                 } *@
-@*                 else *@
-@*                 { *@
-@*                     <td></td> *@
-@*                 } *@
+                @if (transaction.Category != null && String.IsNullOrEmpty(transaction.Category.Name) == false)
+                {
+                <td>@transaction.Category.Name</td>
+                }
+                else
+                {
+                <td></td>
+                }
                 <td>
                     <a asp-controller="Transaction" asp-action="Details" asp-route-id="@transaction.Id">Details</a>
                     | <a asp-controller="Transaction" asp-action="Edit" asp-route-id="@transaction.Id">Edit</a>

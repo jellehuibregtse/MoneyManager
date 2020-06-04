@@ -10,12 +10,11 @@ namespace MoneyManager.Web.ViewModels
     {
         public int TransactionId { get; set; }
         public int AccountId { get; set; }
-        
-        public int CategoryId { get; set; }
+        public int? CategoryId { get; set; }
         public string Name { get; set; }
         [DataType(DataType.Currency)]
         public decimal Amount { get; set; }
-        public Category Category { get; set; }
+        public Category? Category { get; set; }
         public SelectList Categories { get; set; }
         
         public string PageTitle { get; set; }

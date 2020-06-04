@@ -34,7 +34,7 @@
                 <select asp-for="CategoryId"
                         asp-items="@Model.Categories"
                         class="btn btn-primary dropdown-toggle">
-                    <option>Please select one</option>
+                    <option value="@null" selected>Please select one</option>
                 </select>
             </div>
         </div>
