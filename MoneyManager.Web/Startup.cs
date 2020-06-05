@@ -26,12 +26,8 @@ namespace MoneyManager.Web
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public virtual void ConfigureServices(IServiceCollection services)
         {
-            if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
-                services.AddDbContextPool<AppDbContext>(options =>
-                    options.UseSqlServer(_config.GetConnectionString("MoneyManagerDBConnectionProd")));
-            else
-                services.AddDbContextPool<AppDbContext>(options =>
-                    options.UseSqlServer(_config.GetConnectionString("MoneyManagerDBConnection")));
+            services.AddDbContextPool<AppDbContext>(options =>
+                options.UseSqlServer(_config.GetConnectionString("MoneyManagerDBConnectionProd")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
                 {
