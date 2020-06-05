@@ -1,41 +1,14 @@
-﻿using System.IO;
-using System.Net;
+﻿using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.AspNetCore.TestHost;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using MoneyManager.Web;
 using Xunit;
-
-// https://gunnarpeipman.com/aspnet-core-integration-test-startup/
-// https://gunnarpeipman.com/aspnet-core-identity-integration-tests/
 
 namespace MoneyManager.IntegrationTests
 {
-    public class AccountControllerTests : IClassFixture<MoneyManagerFactory<MockStartup>>
+    public class AccountControllerTests : ControllerTests
     {
-        private readonly WebApplicationFactory<MockStartup> _factory;
-
-        public AccountControllerTests(MoneyManagerFactory<MockStartup> factory)
+        public AccountControllerTests(MoneyManagerFactory<MockStartup> factory) : base(factory)
         {
-            var projectDirectory = Directory.GetCurrentDirectory();
-            var configurationPath = Path.Combine(projectDirectory, "appsettings.json");
-
-            _factory = factory.WithWebHostBuilder(builder =>
-            {
-                builder.UseSolutionRelativeContentRoot("MoneyManager");
-
-                builder.ConfigureTestServices(services =>
-                {
-                    services.AddMvc().AddApplicationPart(typeof(Startup).Assembly);
-                });
-
-                builder.ConfigureAppConfiguration((context, configuration) =>
-                {
-                    configuration.AddJsonFile(configurationPath);
-                });
-            });
         }
 
         /// <summary>
@@ -53,7 +26,7 @@ namespace MoneyManager.IntegrationTests
         public async Task Get_EndpointsReturnSuccessAndCorrectContentType(string url)
         {
             // Arrange
-            var client = _factory.CreateClient();
+            var client = Factory.CreateClient();
 
             // Act
             var response = await client.GetAsync(url);
@@ -63,7 +36,7 @@ namespace MoneyManager.IntegrationTests
             Assert.Equal("text/html; charset=utf-8",
                 response.Content.Headers.ContentType.ToString());
         }
-        
+
         /// <summary>
         /// Tests if the client does not go to the url given. For anonymous users this test should pass, as they
         /// should not have access to pages which require login.
@@ -79,7 +52,7 @@ namespace MoneyManager.IntegrationTests
         public async Task Get_SecurePageRequiresAnAuthenticatedUser(string url)
         {
             // Arrange
-            var client = _factory.CreateClient(new WebApplicationFactoryClientOptions {AllowAutoRedirect = false});
+            var client = Factory.CreateClient(new WebApplicationFactoryClientOptions {AllowAutoRedirect = false});
 
             // Act
             var response = await client.GetAsync(url);

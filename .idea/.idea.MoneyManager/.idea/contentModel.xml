@@ -64,6 +64,7 @@
         <e p="appsettings.json" t="Include" />
         <e p="BasicTests.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
+        <e p="ControllerTests.cs" t="Include" />
         <e p="MockStartup.cs" t="Include" />
         <e p="MoneyManager.IntegrationTests.csproj" t="IncludeRecursive" />
         <e p="MoneyManagerFactory.cs" t="Include" />
