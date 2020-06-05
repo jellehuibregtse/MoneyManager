@@ -34,10 +34,10 @@ namespace MoneyManager.IntegrationTests
                 {
                     services.AddMvc(options =>
                     {
-                        if (!hasUser) return;
-                        
-                        options.Filters.Add(new AllowAnonymousFilter());
-                        options.Filters.Add(new MockUserFilter());
+                        // if (!hasUser) return;
+                        //
+                        // options.Filters.Add(new AllowAnonymousFilter());
+                        // options.Filters.Add(new MockUserFilter());
 
                     }).AddApplicationPart(typeof(Startup).Assembly);
                 });
