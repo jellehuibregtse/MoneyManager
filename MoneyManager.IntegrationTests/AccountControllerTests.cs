@@ -1,17 +1,40 @@
+﻿using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.AspNetCore.TestHost;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using MoneyManager.Web;
 using Xunit;
 
+// https://gunnarpeipman.com/aspnet-core-integration-test-startup/
+
+
 namespace MoneyManager.IntegrationTests
 {
-    public class BasicTests : IClassFixture<WebApplicationFactory<Startup>>
+    public class AccountControllerTests : IClassFixture<MoneyManagerFactory<MockStartup>>
     {
-        private readonly WebApplicationFactory<Startup> _factory;
+        private readonly WebApplicationFactory<MockStartup> _factory;
 
-        public BasicTests(WebApplicationFactory<Startup> factory)
+        public AccountControllerTests(MoneyManagerFactory<MockStartup> factory)
         {
-            _factory = factory;
+            var projectDirectory = Directory.GetCurrentDirectory();
+            var configurationPath = Path.Combine(projectDirectory, "appsettings.json");
+
+            _factory = factory.WithWebHostBuilder(builder =>
+            {
+                builder.UseSolutionRelativeContentRoot("MoneyManager");
+
+                builder.ConfigureTestServices(services =>
+                {
+                    services.AddMvc().AddApplicationPart(typeof(Startup).Assembly);
+                });
+                
+                builder.ConfigureAppConfiguration((context, configuration) =>
+                {
+                    configuration.AddJsonFile(configurationPath);
+                });
+            });
         }
         
         /// <summary>
@@ -21,26 +44,11 @@ namespace MoneyManager.IntegrationTests
         /// <param name="url">The URL which is being tested.</param>
         /// <returns></returns>
         [Theory]
-        [InlineData("/")]
-        [InlineData("/Home")]
-        [InlineData("/Account")]
         [InlineData("/Account/Index")]
         [InlineData("/Account/Create")]
         [InlineData("/Account/Details")]
         [InlineData("/Account/Edit")]
         [InlineData("/Account/Delete")]
-        [InlineData("/Transaction")]
-        [InlineData("/Transaction/Index")]
-        [InlineData("/Transaction/Add")]
-        [InlineData("/Transaction/Details")]
-        [InlineData("/Transaction/Edit")]
-        [InlineData("/Transaction/Delete")]
-        [InlineData("/Category")]
-        [InlineData("/Category/Index")]
-        [InlineData("/Category/Create")]
-        [InlineData("/Category/Details")]
-        [InlineData("/Category/Edit")]
-        [InlineData("/Category/Delete")]
         public async Task Get_EndpointsReturnSuccessAndCorrectContentType(string url)
         {
             // Arrange

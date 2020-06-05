@@ -23,10 +23,11 @@ namespace MoneyManager.Web
 
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
-        public void ConfigureServices(IServiceCollection services)
+        public virtual void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContextPool<AppDbContext>(options => 
-                options.UseSqlServer(_config.GetConnectionString("MoneyManagerDBConnection")));
+            var connectionString = _config.GetConnectionString("MoneyManagerDBConnection");
+            services.AddDbContextPool<AppDbContext>(options =>
+                options.UseSqlServer(connectionString));
 
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
                 {
@@ -34,9 +35,9 @@ namespace MoneyManager.Web
                     options.Password.RequiredUniqueChars = 3;
                 })
                 .AddEntityFrameworkStores<AppDbContext>();
-            
+
             services.ConfigureApplicationCookie(options => options.LoginPath = "/user/login");
-            
+
             services.AddMvc(options => options.EnableEndpointRouting = false);
             services.AddScoped<IAccountRepository, SqlAccountRepository>();
             services.AddScoped<ITransactionRepository, SqlTransactionRepository>();
@@ -44,7 +45,7 @@ namespace MoneyManager.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public virtual void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
