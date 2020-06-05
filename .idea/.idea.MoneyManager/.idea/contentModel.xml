@@ -66,6 +66,7 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="ControllerTests.cs" t="Include" />
         <e p="MockStartup.cs" t="Include" />
+        <e p="MockUserFilter.cs" t="Include" />
         <e p="MoneyManager.IntegrationTests.csproj" t="IncludeRecursive" />
         <e p="MoneyManagerFactory.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
@@ -75,6 +76,7 @@
             </e>
           </e>
         </e>
+        <e p="UserSettings.cs" t="Include" />
       </e>
       <e p="MoneyManager.sln" t="IncludeFlat" />
       <e p="MoneyManager.Web" t="IncludeRecursive">

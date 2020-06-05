@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;
@@ -17,16 +18,28 @@ namespace MoneyManager.IntegrationTests
 
         protected ControllerTests(MoneyManagerFactory<MockStartup> factory)
         {
+            Factory = factory;
+        }
+
+        protected WebApplicationFactory<MockStartup> GetFactory(bool hasUser = false)
+        {
             var projectDirectory = Directory.GetCurrentDirectory();
             var configurationPath = Path.Combine(projectDirectory, "appsettings.json");
 
-            Factory = factory.WithWebHostBuilder(builder =>
+            return Factory.WithWebHostBuilder(builder =>
             {
                 builder.UseSolutionRelativeContentRoot("MoneyManager");
 
                 builder.ConfigureTestServices(services =>
                 {
-                    services.AddMvc().AddApplicationPart(typeof(Startup).Assembly);
+                    services.AddMvc(options =>
+                    {
+                        if (!hasUser) return;
+                        
+                        options.Filters.Add(new AllowAnonymousFilter());
+                        options.Filters.Add(new MockUserFilter());
+
+                    }).AddApplicationPart(typeof(Startup).Assembly);
                 });
 
                 builder.ConfigureAppConfiguration((context, configuration) =>

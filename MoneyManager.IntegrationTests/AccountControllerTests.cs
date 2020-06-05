@@ -61,5 +61,30 @@ namespace MoneyManager.IntegrationTests
             Assert.Equal(HttpStatusCode.Redirect, response.StatusCode);
             Assert.StartsWith("http://localhost/user/login", response.Headers.Location.OriginalString);
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        [Theory]
+        [InlineData("/Account/Index")]
+        [InlineData("/Account/Create")]
+        [InlineData("/Account/Details")]
+        [InlineData("/Account/Edit")]
+        [InlineData("/Account/Delete")]
+        public async Task Get_SecurePageIsAvailableForAuthenticatedUser(string url)
+        {
+            // Arrange
+            var client = GetFactory(true).CreateClient();
+ 
+            // Act
+            var response = await client.GetAsync(url);
+            var body = await response.Content.ReadAsStreamAsync();
+ 
+            // Assert
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Assert.Equal("text/html; charset=utf-8", response.Content.Headers.ContentType.ToString());
+        }
     }
 }
