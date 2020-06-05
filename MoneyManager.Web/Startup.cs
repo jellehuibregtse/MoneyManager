@@ -33,8 +33,6 @@ namespace MoneyManager.Web
                 services.AddDbContextPool<AppDbContext>(options =>
                     options.UseSqlServer(_config.GetConnectionString("MoneyManagerDBConnection")));
 
-            services.BuildServiceProvider().GetService<AppDbContext>().Database.Migrate();
-
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
                 {
                     options.Password.RequiredLength = 8;
