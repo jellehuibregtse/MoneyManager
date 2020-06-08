@@ -65,7 +65,8 @@ namespace MoneyManager.Web.Controllers
                 Amount = model.Amount,
                 AccountId = model.AccountId,
                 CategoryId = model.CategoryId,
-                TransactionDate = DateTime.Now
+                TransactionDate = DateTime.Now,
+                ApplicationUser = GetCurrentUser()
             };
 
             _transactionRepository.Add(newTransaction);
