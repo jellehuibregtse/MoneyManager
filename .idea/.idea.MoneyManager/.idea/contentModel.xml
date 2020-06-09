@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
+    <e p="C:\Users\Jelle\.nuget\packages\microsoft.net.test.sdk\16.5.0\build\netcoreapp2.1" t="Include">
+      <e p="Microsoft.NET.Test.Sdk.Program.cs" t="Include" />
+    </e>
+    <e p="C:\Users\Jelle\.nuget\packages\microsoft.testplatform.testhost\16.5.0\build\netcoreapp2.1\x64\testhost.dll" t="Include" />
+    <e p="C:\Users\Jelle\.nuget\packages\microsoft.testplatform.testhost\16.5.0\build\netcoreapp2.1\x64\testhost.exe" t="Include" />
+    <e p="C:\Users\Jelle\.nuget\packages\xunit.runner.visualstudio\2.4.0\build\netcoreapp1.0\xunit.runner.reporters.netcoreapp10.dll" t="Include" />
+    <e p="C:\Users\Jelle\.nuget\packages\xunit.runner.visualstudio\2.4.0\build\netcoreapp1.0\xunit.runner.utility.netcoreapp10.dll" t="Include" />
+    <e p="C:\Users\Jelle\.nuget\packages\xunit.runner.visualstudio\2.4.0\build\netcoreapp1.0\xunit.runner.visualstudio.dotnetcore.testadapter.dll" t="Include" />
     <e p="C:\Users\Jelle\AppData\local\JetBrains\Rider2020.1\extResources" t="IncludeRecursive" />
     <e p="C:\Users\Jelle\AppData\local\JetBrains\Rider2020.1\resharper-host\local\Transient\ReSharperHost\v201\SolutionCaches\_MoneyManager.-541447322.00" t="ExcludeRecursive" />
     <e p="C:\Users\Jelle\AppData\Roaming\JetBrains\Rider2020.1\consoles\db" t="IncludeRecursive" />
@@ -49,6 +57,22 @@
           <e p="IAccountRepository.cs" t="Include" />
           <e p="ICategoryRepository.cs" t="Include" />
           <e p="ITransactionRepository.cs" t="Include" />
+        </e>
+      </e>
+      <e p="MoneyManager.IntegrationTests" t="IncludeRecursive">
+        <e p="appsettings.json" t="Include" />
+        <e p="BasicTests.cs" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="MoneyManager.IntegrationTests.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="MoneyManager.IntegrationTests.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Properties" t="Include">
+          <e p="launchSettings.json" t="Include" />
         </e>
       </e>
       <e p="MoneyManager.sln" t="IncludeFlat" />
