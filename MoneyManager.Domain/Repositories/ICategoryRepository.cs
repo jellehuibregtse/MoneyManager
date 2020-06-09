@@ -7,8 +7,8 @@ namespace MoneyManager.Repositories
     {
         Category GetCategory(int categoryId, ApplicationUser applicationUser);
         IEnumerable<Category> GetAllCategories(ApplicationUser applicationUser);
-        Category Add(Category category);
-        Category Update(Category updatedCategory);
-        Category Delete(int categoryId);
+        void Add(Category category);
+        void Update(Category updatedCategory);
+        void Delete(int categoryId);
     }
 }

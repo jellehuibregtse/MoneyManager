@@ -26,7 +26,7 @@ namespace MoneyManager.Web.Controllers
         {
             var transactions = _transactionRepository.GetAllTransactions(GetCurrentUser()).ToList();
             transactions = transactions.OrderByDescending(transaction => transaction.TransactionDate).ToList();
-            //transactions.GetRange(0, 10);
+            transactions.GetRange(0, transactions.Count >= 10 ? 10 : transactions.Count);
 
             var accounts = _accountRepository.GetAllAccounts(GetCurrentUser());
 

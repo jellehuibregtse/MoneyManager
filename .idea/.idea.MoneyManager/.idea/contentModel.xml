@@ -87,6 +87,7 @@
           <e p="LoginDto.cs" t="Include" />
           <e p="RegisterDto.cs" t="Include" />
           <e p="TransactionDto.cs" t="Include" />
+          <e p="TransactionIndexDto.cs" t="Include" />
         </e>
         <e p="Views" t="Include">
           <e p="_ViewImports.cshtml" t="Include" />
@@ -110,7 +111,6 @@
           <e p="Home" t="Include">
             <e p="_ViewStart.cshtml" t="Include" />
             <e p="Index.cshtml" t="Include" />
-            <e p="test.html" t="Include" />
           </e>
           <e p="Shared" t="Include">
             <e p="_Layout.cshtml" t="Include" />

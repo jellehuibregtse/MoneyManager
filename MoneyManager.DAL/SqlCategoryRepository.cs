@@ -33,33 +33,27 @@ namespace MoneyManager.DAL
                 .Where(category => category.ApplicationUser == applicationUser);
         }
 
-        public Category Add(Category category)
+        public void Add(Category category)
         {
             _context.Categories.Add(category);
             _context.SaveChanges();
-
-            return category;
         }
 
-        public Category Update(Category updatedCategory)
+        public void Update(Category updatedCategory)
         {
             var category = _context.Categories.Attach(updatedCategory);
             category.State = EntityState.Modified;
             _context.SaveChanges();
-
-            return updatedCategory;
         }
 
-        public Category Delete(int categoryId)
+        public void Delete(int categoryId)
         {
             var category = _context.Categories.Find(categoryId);
 
-            if (category == null) return null;
+            if (category == null) return;
 
             _context.Categories.Remove(category);
             _context.SaveChanges();
-
-            return category;
         }
     }
 }

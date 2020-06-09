@@ -4,15 +4,14 @@
     ViewBag.Title = "Accounts Overview";
 }
 
-<h1>@ViewBag.Title</h1>
-<hr/>
-<div class="btn-group my-1">
+<h1 class="title">@ViewBag.Title</h1>
+<div class="section btn-group my-1">
     <a asp-controller="Account" asp-action="Create" class="btn btn-outline-primary" type="button">
         Create Account
     </a>
 </div>
 
-<div class="table-responsive">
+<div class="section table-responsive">
     <table class="table">
         <thead>
         <tr>

@@ -4,9 +4,8 @@
     ViewBag.Title = "Edit Transaction";
 }
 
-<h1>Add a transaction</h1>
-<hr/>
-<form asp-controller="Transaction" asp-action="Edit" method="post" class="mt-3">
+<h1 class="title">Add a transaction</h1>
+<form asp-controller="Transaction" asp-action="Edit" method="post" class="section mt-3">
     <div class="form-group row">
         <input hidden asp-for="TransactionId"/>
         <label asp-for="Name" class="col-sm-2 col-form-label"></label>

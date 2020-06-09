@@ -7,8 +7,8 @@ namespace MoneyManager.Repositories
     {
         Transaction GetTransaction(int transactionId, ApplicationUser applicationUser);
         IEnumerable<Transaction> GetAllTransactions(ApplicationUser applicationUser);
-        Transaction Add(Transaction transaction);
-        Transaction Update(Transaction updatedTransaction);
-        Transaction Delete(int transactionId);
+        void Add(Transaction transaction);
+        void Update(Transaction updatedTransaction);
+        void Delete(int transactionId);
     }
 }

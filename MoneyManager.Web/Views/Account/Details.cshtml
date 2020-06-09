@@ -4,17 +4,15 @@
     ViewBag.Title = "Account Details";
 }
 
-<h1>Transactions</h1>
+<h1 class="title">Transactions</h1>
 
-<div class="btn-group my-1">
+<div class="section btn-group my-1">
     <a asp-controller="Transaction" asp-action="Add" asp-route-accountId="@Model.AccountId" class="btn btn-outline-primary" type="button">
         Add Transaction
     </a>
 </div>
 
-<hr/>
-
-<div>
+<div class="section">
     <ul class="nav nav-pills nav-fill">
         <li class="nav-item">
             <a asp-controller="Account" asp-action="Details" asp-route-id="@Model.AccountId" asp-route-sort="all" class="nav-link @(ViewData["sort"].ToString() == "all" || string.IsNullOrEmpty(ViewData["sort"].ToString()) ? "active" : "")">
@@ -34,7 +32,7 @@
 
     </ul>
 </div>
-<div class="table-responsive">
+<div class="section table-responsive">
     <table class="table">
         <thead>
         <tr>

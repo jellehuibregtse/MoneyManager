@@ -31,33 +31,27 @@ namespace MoneyManager.DAL
                 .Where(account => account.ApplicationUser == applicationUser);
         }
 
-        public Account Add(Account account)
+        public void Add(Account account)
         {
             _context.Accounts.Add(account);
             _context.SaveChanges();
-
-            return account;
         }
 
-        public Account Update(Account updatedAccount)
+        public void Update(Account updatedAccount)
         {
             var account = _context.Accounts.Attach(updatedAccount);
             account.State = EntityState.Modified;
             _context.SaveChanges();
-
-            return updatedAccount;
         }
 
-        public Account Delete(int accountId)
+        public void Delete(int accountId)
         {
             var account = _context.Accounts.Find(accountId);
 
-            if (account == null) return null;
+            if (account == null) return;
 
             _context.Accounts.Remove(account);
             _context.SaveChanges();
-
-            return account;
         }
     }
 }

@@ -32,33 +32,27 @@ namespace MoneyManager.DAL
                 .Where(transaction => transaction.ApplicationUser == applicationUser);
         }
 
-        public Transaction Add(Transaction transaction)
+        public void Add(Transaction transaction)
         {
             _context.Transactions.Add(transaction);
             _context.SaveChanges();
-
-            return transaction;
         }
 
-        public Transaction Update(Transaction updatedTransaction)
+        public void Update(Transaction updatedTransaction)
         {
             var transaction = _context.Transactions.Attach(updatedTransaction);
             transaction.State = EntityState.Modified;
             _context.SaveChanges();
-
-            return updatedTransaction;
         }
 
-        public Transaction Delete(int transactionId)
+        public void Delete(int transactionId)
         {
             var transaction = _context.Transactions.Find(transactionId);
 
-            if (transaction == null) return null;
+            if (transaction == null) return;
 
             _context.Transactions.Remove(transaction);
             _context.SaveChanges();
-
-            return transaction;
         }
     }
 }

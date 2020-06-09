@@ -1,1 +1,46 @@
-﻿
+﻿@model TransactionIndexDto
+
+@{
+    ViewBag.Title = "Transaction Overview";
+}
+
+<h1 class="title">@ViewBag.Title</h1>
+
+<div class="section table-responsive">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Name</th>
+            <th>Amount</th>
+            <th>Account</th>
+            <th>Category</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var transaction in Model.Transactions)
+        {
+            <tr>
+                <td>@transaction.TransactionDate.ToString()</td>
+                <td>@transaction.Name</td>
+                <td>&euro; @transaction.Amount</td>
+                <td>@transaction.Account.Name</td>
+                @if (transaction.Category != null && String.IsNullOrEmpty(transaction.Category.Name) == false)
+                {
+                <td>@transaction.Category.Name</td>
+                }
+                else
+                {
+                <td></td>
+                }
+                <td>
+                    <a asp-controller="Transaction" asp-action="Details" asp-route-id="@transaction.Id">Details</a>
+                    | <a asp-controller="Transaction" asp-action="Edit" asp-route-id="@transaction.Id">Edit</a>
+                    | <a asp-controller="Transaction" asp-action="Delete" asp-route-id="@transaction.Id">Delete</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

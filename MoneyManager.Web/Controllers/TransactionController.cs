@@ -27,7 +27,16 @@ namespace MoneyManager.Web.Controllers
 
         public ViewResult Index()
         {
-            return View("TransactionNotFound", null);
+            var transactions = _transactionRepository.GetAllTransactions(GetCurrentUser()).ToList();
+            transactions = transactions.OrderByDescending(transaction => transaction.TransactionDate).ToList();
+            transactions.GetRange(0, transactions.Count >= 10 ? 10 : transactions.Count);
+
+            var model = new TransactionIndexDto
+            {
+                Transactions = transactions
+            };
+            
+            return View(model);
         }
 
         public ViewResult Details(int id)

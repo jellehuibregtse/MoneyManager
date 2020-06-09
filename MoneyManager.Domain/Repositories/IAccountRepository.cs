@@ -7,8 +7,8 @@ namespace MoneyManager.Repositories
     {
         Account GetAccount(int accountId, ApplicationUser applicationUser);
         IEnumerable<Account> GetAllAccounts(ApplicationUser applicationUser);
-        Account Add(Account account);
-        Account Update(Account updatedAccount);
-        Account Delete(int accountId);
+        void Add(Account account);
+        void Update(Account updatedAccount);
+        void Delete(int accountId);
     }
 }
