@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoneyManager.Web", "MoneyMa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoneyManager.DAL", "MoneyManager.DAL\MoneyManager.DAL.csproj", "{6E9E34D1-959D-4664-9D04-B8E5A2949EFA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyManager.IntegrationTests", "MoneyManager.IntegrationTests\MoneyManager.IntegrationTests.csproj", "{26F602C3-3520-4CC8-AAFA-115B020484AF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyManager.Tests", "MoneyManager.Tests\MoneyManager.Tests.csproj", "{A37E9CB2-196D-4217-A7DD-AEB2CDDD3277}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{6E9E34D1-959D-4664-9D04-B8E5A2949EFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E9E34D1-959D-4664-9D04-B8E5A2949EFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E9E34D1-959D-4664-9D04-B8E5A2949EFA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{26F602C3-3520-4CC8-AAFA-115B020484AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{26F602C3-3520-4CC8-AAFA-115B020484AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{26F602C3-3520-4CC8-AAFA-115B020484AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{26F602C3-3520-4CC8-AAFA-115B020484AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A37E9CB2-196D-4217-A7DD-AEB2CDDD3277}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A37E9CB2-196D-4217-A7DD-AEB2CDDD3277}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A37E9CB2-196D-4217-A7DD-AEB2CDDD3277}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A37E9CB2-196D-4217-A7DD-AEB2CDDD3277}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

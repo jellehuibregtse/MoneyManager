@@ -3,13 +3,13 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using MoneyManager.Web;
 using Xunit;
 
-namespace MoneyManager.IntegrationTests
+namespace MoneyManager.Tests
 {
-    public class BasicTests : IClassFixture<WebApplicationFactory<Startup>>
+    public class RoutingTests : IClassFixture<WebApplicationFactory<Startup>>
     {
         private readonly WebApplicationFactory<Startup> _factory;
 
-        public BasicTests(WebApplicationFactory<Startup> factory)
+        public RoutingTests(WebApplicationFactory<Startup> factory)
         {
             _factory = factory;
         }
