@@ -4,6 +4,11 @@
     ViewBag.Title = "Dashboard";
 }
 
+@{
+    Model.Transactions = Model.Transactions.OrderByDescending(transaction => transaction.TransactionDate).ToList();
+    Model.Transactions.GetRange(0, Model.Transactions.Count >= 10 ? 10 : Model.Transactions.Count);
+}
+
 <h1 class="title">Dashboard</h1>
 
 <div class="section">

@@ -55,14 +55,16 @@ namespace MoneyManager.Web.Controllers
                 UserName = model.Email,
                 Email = model.Email,
                 RegistrationDate = DateTime.Today,
-                Accounts = new List<Account>()
+                Accounts = new List<Account>(),
+                Transactions = new List<Transaction>(),
+                Categories = new List<Category>()
             };
 
             var result = await _userManager.CreateAsync(user, model.Password);
 
             if (result.Succeeded)
             {
-                await _signInManager.SignInAsync(user, isPersistent: false);
+                await _signInManager.SignInAsync(user, false);
                 return RedirectToAction("Index", "Home");
             }
 

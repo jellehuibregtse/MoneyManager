@@ -5,6 +5,6 @@ namespace MoneyManager.Web.ViewModels
 {
     public class TransactionIndexDto
     {
-        public IEnumerable<Transaction> Transactions { get; set; }
+        public List<Transaction> Transactions { get; set; }
     }
 }

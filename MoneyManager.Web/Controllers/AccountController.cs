@@ -38,22 +38,8 @@ namespace MoneyManager.Web.Controllers
                 return View("AccountNotFound", id);
             }
 
-            account.Transactions = sort switch
-            {
-                "month" => account.Transactions
-                    .Where(transaction => transaction.TransactionDate.Month.Equals(DateTime.Now.Month))
-                    .ToList(),
-                "week" => account.Transactions.Where(transaction =>
-                        Math.Abs(DateTime.Now.Day - transaction.TransactionDate.Day) < 7 &&
-                        transaction.TransactionDate.Month.Equals(DateTime.Now.Month))
-                    .ToList(),
-                _ => account.Transactions
-            };
-
             ViewData["sort"] = sort;
-
-            account.Transactions = account.Transactions.OrderByDescending(transaction => transaction.TransactionDate).ToList();
-
+            
             return View(GetDto(account));
         }
 

@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
-using MoneyManager.Models;
 
 namespace MoneyManager.Web.ViewModels
 {
@@ -28,7 +25,5 @@ namespace MoneyManager.Web.ViewModels
          Compare("Password",
              ErrorMessage = "Passwords do not match.")]
         public string ConfirmPassword { get; set; }
-        public DateTime RegistrationDate { get; set; }
-        public List<Account> Accounts { get; set; }
     }
 }

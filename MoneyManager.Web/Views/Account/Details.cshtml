@@ -4,6 +4,23 @@
     ViewBag.Title = "Account Details";
 }
 
+@{
+    Model.Transactions = ViewData["sort"] switch
+    {
+        "month" => Model.Transactions
+            .Where(transaction => transaction.TransactionDate.Month.Equals(DateTime.Now.Month))
+            .ToList(),
+        "week" => Model.Transactions.Where(transaction =>
+            Math.Abs(DateTime.Now.Day - transaction.TransactionDate.Day) < 7 &&
+            transaction.TransactionDate.Month.Equals(DateTime.Now.Month))
+            .ToList(),
+        _ => Model.Transactions
+        };
+
+    Model.Transactions = Model.Transactions.OrderByDescending(transaction => transaction.TransactionDate).ToList();
+
+}
+
 <h1 class="title">Transactions</h1>
 
 <div class="section btn-group my-1">
@@ -52,11 +69,11 @@
                 <td>&euro; @transaction.Amount</td>
                 @if (transaction.Category != null && String.IsNullOrEmpty(transaction.Category.Name) == false)
                 {
-                <td>@transaction.Category.Name</td>
+                    <td>@transaction.Category.Name</td>
                 }
                 else
                 {
-                <td></td>
+                    <td></td>
                 }
                 <td>
                     <a asp-controller="Transaction" asp-action="Details" asp-route-id="@transaction.Id">Details</a>

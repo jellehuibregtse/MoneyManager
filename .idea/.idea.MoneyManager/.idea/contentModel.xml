@@ -105,7 +105,6 @@
         <e p="Startup.cs" t="Include" />
         <e p="ViewModels" t="Include">
           <e p="AccountDto.cs" t="Include" />
-          <e p="AccountIndexDto.cs" t="Include" />
           <e p="CategoryDto.cs" t="Include" />
           <e p="HomeDto.cs" t="Include" />
           <e p="LoginDto.cs" t="Include" />

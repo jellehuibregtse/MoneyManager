@@ -28,8 +28,6 @@ namespace MoneyManager.Web.Controllers
         public ViewResult Index()
         {
             var transactions = _transactionRepository.GetAllTransactions(GetCurrentUser()).ToList();
-            transactions = transactions.OrderByDescending(transaction => transaction.TransactionDate).ToList();
-            transactions.GetRange(0, transactions.Count >= 10 ? 10 : transactions.Count);
 
             var model = new TransactionIndexDto
             {
@@ -57,7 +55,8 @@ namespace MoneyManager.Web.Controllers
                 AccountId = accountId,
                 Categories =
                     new SelectList(
-                        _categoryRepository.GetAllCategories(_userManager.GetUserAsync(User).Result).ToList(), "Id",
+                        _categoryRepository.GetAllCategories(_userManager.GetUserAsync(User).Result).ToList(),
+                        "Id",
                         "Name")
             });
         }

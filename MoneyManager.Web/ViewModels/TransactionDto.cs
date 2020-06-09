@@ -16,8 +16,5 @@ namespace MoneyManager.Web.ViewModels
         public decimal Amount { get; set; }
         public Category Category { get; set; }
         public SelectList Categories { get; set; }
-        
-        public string PageTitle { get; set; }
-        
     }
 }

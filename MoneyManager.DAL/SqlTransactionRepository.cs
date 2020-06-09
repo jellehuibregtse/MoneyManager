@@ -20,7 +20,8 @@ namespace MoneyManager.DAL
             return _context.Transactions
                 .Include(transaction => transaction.Category)
                 .Include(transaction => transaction.Account)
-                .SingleOrDefault(transaction => transaction.Id == transactionId);
+                .SingleOrDefault(transaction =>
+                    transaction.Id == transactionId && transaction.ApplicationUser == applicationUser);
         }
 
         public IEnumerable<Transaction> GetAllTransactions(ApplicationUser applicationUser)
