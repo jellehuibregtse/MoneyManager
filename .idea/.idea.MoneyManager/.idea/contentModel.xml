@@ -59,40 +59,21 @@
           <e p="ITransactionRepository.cs" t="Include" />
         </e>
       </e>
-<<<<<<< Updated upstream
-      <e p="MoneyManager.sln" t="IncludeFlat" />
-      <e p="MoneyManager.Tests" t="IncludeRecursive">
-        <e p="bin" t="ExcludeRecursive" />
-        <e p="ControllerFactory.cs" t="Include" />
-        <e p="HomeControllerUnitTests.cs" t="Include" />
-        <e p="MockHelpers.cs" t="Include" />
-        <e p="MoneyManager.Tests.csproj" t="IncludeRecursive" />
-=======
       <e p="MoneyManager.IntegrationTests" t="IncludeRecursive">
         <e p="AccountControllerTests.cs" t="Include" />
-        <e p="appsettings.json" t="Include" />
-        <e p="BasicTests.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="MockStartup.cs" t="Include" />
         <e p="MoneyManager.IntegrationTests.csproj" t="IncludeRecursive" />
         <e p="MoneyManagerWebFactory.cs" t="Include" />
->>>>>>> Stashed changes
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp3.1" t="Include">
-              <e p="MoneyManager.Tests.AssemblyInfo.cs" t="Include" />
+              <e p="MoneyManager.IntegrationTests.AssemblyInfo.cs" t="Include" />
             </e>
           </e>
         </e>
-<<<<<<< Updated upstream
-        <e p="RoutingTests.cs" t="Include" />
-=======
-        <e p="Properties" t="Include">
-          <e p="launchSettings.json" t="Include" />
-        </e>
-        <e p="Utilites.cs" t="Include" />
->>>>>>> Stashed changes
       </e>
+      <e p="MoneyManager.sln" t="IncludeFlat" />
       <e p="MoneyManager.Web" t="IncludeRecursive">
         <e p="appsettings.Development.json" t="Include" />
         <e p="appsettings.json" t="Include" />

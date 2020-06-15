@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoneyManager.Web", "MoneyMa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoneyManager.DAL", "MoneyManager.DAL\MoneyManager.DAL.csproj", "{6E9E34D1-959D-4664-9D04-B8E5A2949EFA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyManager.Tests", "MoneyManager.Tests\MoneyManager.Tests.csproj", "{A37E9CB2-196D-4217-A7DD-AEB2CDDD3277}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyManager.IntegrationTests", "MoneyManager.IntegrationTests\MoneyManager.IntegrationTests.csproj", "{A37E9CB2-196D-4217-A7DD-AEB2CDDD3277}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
