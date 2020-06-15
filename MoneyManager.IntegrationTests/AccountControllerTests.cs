@@ -1,7 +1,8 @@
 ﻿using System.IO;
 using System.Net;
-using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;
@@ -31,7 +32,13 @@ namespace MoneyManager.IntegrationTests
 
                 builder.ConfigureTestServices(services =>
                 {
-                    services.AddMvc().AddApplicationPart(typeof(Startup).Assembly);
+                    services.AddAuthentication("Test")
+                        .AddScheme<AuthenticationSchemeOptions, MockAuthHandler>(
+                            "Test", options => {});
+                    
+                    services
+                        .AddMvc()
+                        .AddApplicationPart(typeof(Startup).Assembly);
                 });
             });
         }
@@ -77,6 +84,24 @@ namespace MoneyManager.IntegrationTests
             Assert.Equal(HttpStatusCode.Redirect, response.StatusCode);
             Assert.StartsWith("http://localhost/user/login",
                 response.Headers.Location.OriginalString);
+        }
+
+        [Theory]
+        [InlineData("/")]
+        public async Task Get_SecurePageIsAvailableForAuthenticatedUser(string url)
+        {
+            // Arrange
+            var client = _factory.CreateClient(new WebApplicationFactoryClientOptions {AllowAutoRedirect = true});
+            client.DefaultRequestHeaders.Authorization = 
+                new AuthenticationHeaderValue("Test");
+
+            // Act
+            var response = await client.GetAsync(url);
+            var body = await response.Content.ReadAsStringAsync();
+
+            // Assert
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Assert.Equal("text/html; charset=utf-8", response.Content.Headers.ContentType.ToString());
         }
     }
 }

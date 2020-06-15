@@ -62,6 +62,7 @@
       <e p="MoneyManager.IntegrationTests" t="IncludeRecursive">
         <e p="AccountControllerTests.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
+        <e p="MockAuthHandler.cs" t="Include" />
         <e p="MockStartup.cs" t="Include" />
         <e p="MoneyManager.IntegrationTests.csproj" t="IncludeRecursive" />
         <e p="MoneyManagerWebFactory.cs" t="Include" />
