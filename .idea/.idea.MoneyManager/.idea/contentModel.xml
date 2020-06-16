@@ -60,9 +60,9 @@
         </e>
       </e>
       <e p="MoneyManager.IntegrationTests" t="IncludeRecursive">
-        <e p="appsettings.json" t="Include" />
-        <e p="BasicTests.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
+        <e p="CustomWebApplicationFactory.cs" t="Include" />
+        <e p="MockAuthHandler.cs" t="Include" />
         <e p="MoneyManager.IntegrationTests.csproj" t="IncludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
@@ -71,9 +71,8 @@
             </e>
           </e>
         </e>
-        <e p="Properties" t="Include">
-          <e p="launchSettings.json" t="Include" />
-        </e>
+        <e p="RoutingTests.cs" t="Include" />
+        <e p="Utilities.cs" t="Include" />
       </e>
       <e p="MoneyManager.sln" t="IncludeFlat" />
       <e p="MoneyManager.Web" t="IncludeRecursive">
