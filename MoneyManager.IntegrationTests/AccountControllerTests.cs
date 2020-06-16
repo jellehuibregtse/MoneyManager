@@ -1,51 +1,19 @@
-﻿using System.IO;
-using System.Net;
+﻿using System.Net;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.AspNetCore.TestHost;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using MoneyManager.DAL;
 using MoneyManager.Web;
 using Xunit;
 
 namespace MoneyManager.IntegrationTests
 {
-    public class AccountControllerTests : IClassFixture<MoneyManagerWebFactory<Startup>>
+    public class AccountControllerTests : IClassFixture<CustomWebApplicationFactory<Startup>>
     {
-        private readonly WebApplicationFactory<Startup> _factory;
+        private readonly CustomWebApplicationFactory<Startup> _factory;
 
-        public AccountControllerTests(MoneyManagerWebFactory<Startup> factory)
+        public AccountControllerTests(CustomWebApplicationFactory<Startup> factory)
         {
-            var projectDirectory = Directory.GetCurrentDirectory();
-            var configurationPath = Path.Combine(projectDirectory, "appsettings.json");
-
-            _factory = factory.WithWebHostBuilder(builder =>
-            {
-                builder.UseSolutionRelativeContentRoot(projectDirectory);
-
-                builder.ConfigureAppConfiguration((context, configuration) =>
-                {
-                    configuration.AddJsonFile(configurationPath);
-                });
-
-                builder.ConfigureTestServices(services =>
-                {
-                    services.AddAuthentication("Test")
-                        .AddScheme<AuthenticationSchemeOptions, MockAuthHandler>(
-                            "Test", options => {});
-                    
-                    services
-                        .AddMvc()
-                        .AddApplicationPart(typeof(Startup).Assembly);
-                    
-                    services.AddDbContextPool<AppDbContext>(
-                        options => options.UseInMemoryDatabase("MoneyManagerTestDB"));
-                });
-            });
+            _factory = factory;
         }
 
         /// <summary>
@@ -71,8 +39,7 @@ namespace MoneyManager.IntegrationTests
 
             // Assert
             response.EnsureSuccessStatusCode();
-            Assert.Equal("text/html; charset=utf-8",
-                response.Content.Headers.ContentType.ToString());
+            Assert.Equal("text/html; charset=utf-8", response.Content.Headers.ContentType.ToString());
         }
 
         [Theory]
