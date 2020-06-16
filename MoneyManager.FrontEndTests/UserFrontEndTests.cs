@@ -20,10 +20,10 @@ namespace MoneyManager.FrontEndTests
         {
             // Arrange
             // Done in the constructor of parent method.
-            
+
             // Act
             Driver.Navigate().GoToUrl("https://localhost:5001/user/login");
-            
+
             // Assert
             Assert.Equal("User Login", Title);
             Assert.Contains("Please Login", Source);
@@ -34,13 +34,13 @@ namespace MoneyManager.FrontEndTests
         {
             // Arrange
             // Done in the constructor of parent method.
-            
+
             // Act
             Driver.Navigate().GoToUrl(BaseUri + "/login");
-            
+
             EmailElement.SendKeys("test@example.com");
             PasswordElement.SendKeys("password");
-            
+
             LoginButtonElement.Click();
 
             var errorMessage = Driver.FindElement(By.XPath("/html/body/form/div[2]/ul/li")).Text;
@@ -48,28 +48,62 @@ namespace MoneyManager.FrontEndTests
             // Arrange
             Assert.Equal("Invalid Login Attempt", errorMessage);
         }
-        
+
         [Fact]
-        public void Register_WrongModelData_ReturnsErrorMessage()
+        public void Register_NotMatchingPasswords_ReturnsErrorMessage()
         {
             // Arrange
             // Done in the constructor of parent method.
-            
+
             // Act
             Driver.Navigate().GoToUrl(BaseUri + "/register");
-            
+
             FirstNameElement.SendKeys("John");
             LastNameElement.SendKeys("Doe");
             EmailElement.SendKeys("johndoe@example.com");
             PasswordElement.SendKeys("password123");
             ConfirmPasswordElement.SendKeys("wrongpassword123");
-            
+
             RegisterButtonElement.Click();
 
             var errorMessage = Driver.FindElement(By.XPath("/html/body/form/span[5]")).Text;
 
             // Arrange
             Assert.Equal("Passwords do not match.", errorMessage);
+        }
+
+        [Fact]
+        public void Register_EmptyForm_ReturnsErrorMessage()
+        {
+            // Arrange
+            // Done in the constructor of the parent method.
+
+            // Act
+            Driver.Navigate().GoToUrl(BaseUri + "/register");
+
+            RegisterButtonElement.Click();
+
+            var errorMessage = new[]
+            {
+                Driver.FindElement(By.XPath("/html/body/form/span[1]")).Text,
+                Driver.FindElement(By.XPath("/html/body/form/span[2]")).Text,
+                Driver.FindElement(By.XPath("/html/body/form/span[3]")).Text,
+                Driver.FindElement(By.XPath("/html/body/form/span[4]")).Text,
+                Driver.FindElement(By.XPath("/html/body/form/div/ul/li[1]")).Text,
+                Driver.FindElement(By.XPath("/html/body/form/div/ul/li[2]")).Text,
+                Driver.FindElement(By.XPath("/html/body/form/div/ul/li[3]")).Text,
+                Driver.FindElement(By.XPath("/html/body/form/div/ul/li[4]")).Text,
+            };
+            
+            Assert.Equal("The First Name field is required.", errorMessage[0]);
+            Assert.Equal("The Last Name field is required.", errorMessage[1]);
+            Assert.Equal("The Email field is required.", errorMessage[2]);
+            Assert.Equal("The Password field is required.", errorMessage[3]);
+            Assert.Equal("The First Name field is required.", errorMessage[4]);
+            Assert.Equal("The Last Name field is required.", errorMessage[5]);
+            Assert.Equal("The Email field is required.", errorMessage[6]);
+            Assert.Equal("The Password field is required.", errorMessage[7]);
+
         }
     }
 }
