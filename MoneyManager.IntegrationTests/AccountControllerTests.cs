@@ -5,8 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MoneyManager.DAL;
 using MoneyManager.Web;
 using Xunit;
 
@@ -39,6 +41,9 @@ namespace MoneyManager.IntegrationTests
                     services
                         .AddMvc()
                         .AddApplicationPart(typeof(Startup).Assembly);
+                    
+                    services.AddDbContextPool<AppDbContext>(
+                        options => options.UseInMemoryDatabase("MoneyManagerTestDB"));
                 });
             });
         }
