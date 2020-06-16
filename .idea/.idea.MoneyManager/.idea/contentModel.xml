@@ -59,6 +59,19 @@
           <e p="ITransactionRepository.cs" t="Include" />
         </e>
       </e>
+      <e p="MoneyManager.FrontEndTests" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="FrontEndTest.cs" t="Include" />
+        <e p="MoneyManager.FrontEndTests.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="MoneyManager.FrontEndTests.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="UserFrontEndTests.cs" t="Include" />
+      </e>
       <e p="MoneyManager.IntegrationTests" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
         <e p="CustomWebApplicationFactory.cs" t="Include" />
@@ -151,6 +164,7 @@
           <e p="User" t="Include">
             <e p="Login.cshtml" t="Include" />
             <e p="Register.cshtml" t="Include" />
+            <e p="Settings.cshtml" t="Include" />
           </e>
         </e>
         <e p="web.config" t="Include" />
@@ -162,9 +176,6 @@
           <e p="images" t="Include">
             <e p="account.png" t="Include" />
             <e p="favicon.ico" t="Include" />
-          </e>
-          <e p="js" t="Include">
-            <e p="CustomScript.js" t="Include" />
           </e>
           <e p="lib" t="Include">
             <e p="bootstrap" t="Include">

@@ -40,19 +40,19 @@ namespace MoneyManager.IntegrationTests
                 {
                     options.UseInMemoryDatabase("InMemoryDbForTesting");
                 });
-                
+
                 var serviceProvider = services.BuildServiceProvider();
-                
+
                 // Create a scope to obtain a reference to the database
                 // context (ApplicationDbContext).
                 using var scope = serviceProvider.CreateScope();
                 var scopedServices = scope.ServiceProvider;
                 var db = scopedServices.GetRequiredService<AppDbContext>();
                 var logger = scopedServices.GetRequiredService<ILogger<CustomWebApplicationFactory<TStartup>>>();
-                
+
                 // Ensure the database is created.
                 db.Database.EnsureCreated();
-                
+
                 try
                 {
                     // Seed the database with test data.
