@@ -26,7 +26,7 @@
     <form method="post">
         <input type="hidden" asp-for="@Model.TransactionId"/>
         <input type="hidden" asp-for="@Model.AccountId"/>
-        <input type="submit" value="Delete" class="btn btn-danger"/> |
-        <a asp-controller="Account" asp-action="Details" asp-route-id="@Model.AccountId">Return to overview</a>
+        <a asp-controller="Account" asp-action="Details" asp-route-id="@Model.AccountId" class="btn btn-secondary" role="button">Return to overview</a>
+        <input type="submit" value="Delete" class="btn btn-danger"/>
     </form>
 </div>

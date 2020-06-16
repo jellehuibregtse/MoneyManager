@@ -18,8 +18,8 @@
     </dl>
 
     <form method="post">
+        <a asp-controller="Category" asp-action="Index" class="btn btn-secondary" role="button">Return to overview</a>
         <input type="hidden" asp-for="@Model.CategoryId"/>
-        <input type="submit" value="Delete" class="btn btn-danger"/> |
-        <a asp-controller="Category" asp-action="Index">Return to overview</a>
+        <input type="submit" value="Delete" class="btn btn-danger"/>
     </form>
 </div>
