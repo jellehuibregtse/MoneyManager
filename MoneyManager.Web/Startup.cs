@@ -25,7 +25,7 @@ namespace MoneyManager.Web
         public virtual void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContextPool<AppDbContext>(options =>
-                options.UseSqlServer(_config.GetConnectionString("MoneyManagerDBConnection")));
+                options.UseSqlServer(_config.GetConnectionString("MoneyManagerDBConnectionProd")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
                 {
