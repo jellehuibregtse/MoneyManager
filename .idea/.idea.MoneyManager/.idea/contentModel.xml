@@ -60,7 +60,9 @@
         </e>
       </e>
       <e p="MoneyManager.FrontEndTests" t="IncludeRecursive">
+        <e p="AccountFrontEndTests.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
+        <e p="CategoryFrontEndTests.cs" t="Include" />
         <e p="FrontEndTest.cs" t="Include" />
         <e p="HomeFrontEndTests.cs" t="Include" />
         <e p="MoneyManager.FrontEndTests.csproj" t="IncludeRecursive" />
@@ -71,6 +73,7 @@
             </e>
           </e>
         </e>
+        <e p="TransactionFrontEndTests.cs" t="Include" />
         <e p="UserFrontEndTests.cs" t="Include" />
       </e>
       <e p="MoneyManager.IntegrationTests" t="IncludeRecursive">

@@ -68,7 +68,7 @@ namespace MoneyManager.FrontEndTests
 
             var errorMessage = Driver.FindElement(By.XPath("/html/body/form/span[5]")).Text;
 
-            // Arrange
+            // Assert
             Assert.Equal("Passwords do not match.", errorMessage);
         }
 
@@ -95,6 +95,7 @@ namespace MoneyManager.FrontEndTests
                 Driver.FindElement(By.XPath("/html/body/form/div/ul/li[4]")).Text,
             };
             
+            // Assert
             Assert.Equal("The First Name field is required.", errorMessage[0]);
             Assert.Equal("The Last Name field is required.", errorMessage[1]);
             Assert.Equal("The Email field is required.", errorMessage[2]);

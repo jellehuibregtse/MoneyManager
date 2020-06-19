@@ -7,9 +7,10 @@ namespace MoneyManager.FrontEndTests
     {
         private IWebElement UserDropdownElement =>
             Driver.FindElement(By.XPath("//*[@id=\"navbarSupportedContent\"]/ul[2]/li/a"));
+
         private IWebElement LogoutButtonElement =>
             Driver.FindElement(By.XPath("//*[@id=\"navbarSupportedContent\"]/ul[2]/li/div/form"));
-        
+
         public HomeFrontEndTests()
         {
             Login();
@@ -20,14 +21,15 @@ namespace MoneyManager.FrontEndTests
         {
             // Arrange
             // Done in constructor and constructor of the parent method.
-            
+
             // Act
             Driver.Navigate().Refresh();
-            
+
             // Assert
             Assert.Equal("Dashboard", Title);
             Assert.Contains("Accounts", Source);
             Assert.Contains("Recent transactions", Source);
+            Assert.True(UserDropdownElement.Displayed);
         }
 
         [Fact]
@@ -35,11 +37,11 @@ namespace MoneyManager.FrontEndTests
         {
             // Arrange
             // Done in constructor and constructor of the parent method.
-            
+
             // Act
             UserDropdownElement.Click();
             LogoutButtonElement.Click();
-            
+
             // Assert
             Assert.Equal("User Login", Title);
             Assert.Contains("Please Login", Source);
